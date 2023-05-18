@@ -1,29 +1,17 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./homepage/home";
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-const { Header, Content, } = Layout;
+import PublicLayout from "../../common/layout/public/public.layout";
+import Login from "./auth-pages/login";
 
 const PublicRoutes = () => {
   return (
-    <Layout>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div className="demo-logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
-          
-        />
-      </Header>
+    <PublicLayout>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="*" element={<Navigate to={"/"} />} />
       </Routes>
-    </Layout>
+    </PublicLayout>
   );
 };
 export default PublicRoutes;

@@ -1,0 +1,23 @@
+.login-page {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    padding: 24px;
+    padding-bottom:12px;
+    border: solid #cfcfc4 1px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 0px 0px #cfcfc4;
+}
+
+.form-title {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: solid 1px #cfcfc4;
+}
