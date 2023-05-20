@@ -2,7 +2,7 @@ import axios from "axios";
 import getToken from "../util/get-token";
 
 const config = {
-    apiUrl:'http://localhost:8080/api'
+    apiUrl:'http://localhost:8080'
 }
 
 export const get = async (location) => {

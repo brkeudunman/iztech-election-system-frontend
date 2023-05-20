@@ -5,16 +5,22 @@ const LoginFormView = () => {
   return (
     <>
       <Form.Item
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
+        validateTrigger={onsubmit}
         rules={[
           {
             required: true,
-            message: "Please input your username!",
+            message: "Please enter your email!",
           },
+          {
+            type:"email",
+            message: "The format of the input should be email."
+            
+          }
         ]}
       >
-        <Input />
+        <Input/>
       </Form.Item>
 
       <Form.Item

@@ -1,11 +1,13 @@
 import { Col, Form, Row } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import LoginFormView from "../../../common/view/login/login-form-view";
 import "./login.css";
-import { get, post } from "../../../api/api";
+import { useLogin } from "../../../hooks/auth.hooks";
 
 const Login = () => {
+  const { mutateAsync: login } = useLogin();
   const onFinish = (values) => {
+    login(values);
     console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
