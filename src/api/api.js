@@ -21,6 +21,7 @@ export const get = async (location) => {
       throw error.response ? error.response.data : error;
     });
 };
+
 export const post = async (location, body) => {
   const token = getToken();
   return axios

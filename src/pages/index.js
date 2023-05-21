@@ -8,8 +8,10 @@ import { post } from "../api/api";
 const ApplicationRoutes = () => {
   const navigate = useNavigate();
   const [userAuthenticationToken, setUserAuthenticationToken] = useState(
-    getToken()
+    true 
+    //getToken()
   );
+
   window.addEventListener("storage", () => {
     setUserAuthenticationToken((prevState) => {
       return getToken();
@@ -20,6 +22,7 @@ const ApplicationRoutes = () => {
       navigate("/app")
     }
   },[])
+
   console.log(userAuthenticationToken);
   return <>{userAuthenticationToken ? <AppRoutes /> : <PublicRoutes />}</>;
 };

@@ -6,7 +6,6 @@ import {
   LogoutOutlined,
   PieChartOutlined,
   TeamOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import React, { useState } from "react";
 import { useLogOutUserMe } from "../../../hooks/auth.hooks";

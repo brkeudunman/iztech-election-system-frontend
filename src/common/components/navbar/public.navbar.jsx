@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import { LoginOutlined, HomeOutlined } from "@ant-design/icons";
 const { Header } = Layout;
 
 const PublicNavbar = () => {
@@ -9,6 +10,12 @@ const PublicNavbar = () => {
     {
       label: "Log In",
       key: "login",
+      icon: <LoginOutlined />,
+    },
+    {
+      label: "Home",
+      key: "home",
+      icon: <HomeOutlined />,
     },
   ];
 
@@ -22,9 +29,7 @@ const PublicNavbar = () => {
     <>
       <Header
         style={{
-          display: "flex",
-          justifyContent: "end",
-          backgroundColor: "#0958d9",
+       
         }}
       >
         <div className="demo-logo" />
@@ -33,7 +38,6 @@ const PublicNavbar = () => {
           onClick={onClick}
           items={items}
           selectedKeys={[current]}
-          defaultSelectedKeys={["2"]}
         />
       </Header>
     </>
