@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #27355f;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  margin-right: 330px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-left: 330px;
+}
+
+.first-text, .second-text, .third-text {
+    font-weight: bold;
+    color: #fff;
+  }
+
+.first-text .second-text{
+    font-size: 20px;
+}
+
+.third-text {
+    font-size: 10px;
+}
+
+.button {
+  background-color: #53659c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.logo {
+    margin-right: 30px;
+}
