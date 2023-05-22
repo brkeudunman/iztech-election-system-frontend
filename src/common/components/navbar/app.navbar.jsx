@@ -27,7 +27,7 @@ const AppNavbar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const items = [
-    getItem("Home", "/app", <HomeOutlined />),
+    getItem("Home", "app", <HomeOutlined />),
     getItem("View Results", "/results", <PieChartOutlined />),
     getItem("Option 2", "3", <DesktopOutlined />),
     getItem("Team", "4", <TeamOutlined />),

@@ -5,6 +5,6 @@ const Homepage = () => {
   return (
     <div>Home App</div>
   )
-}
+} 
 
 export default Homepage

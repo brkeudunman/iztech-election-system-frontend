@@ -1,17 +1,25 @@
-import { Col, Form, Row } from "antd";
+import { Col, Form, Row, notification } from "antd";
 import React from "react";
 import LoginFormView from "../../../common/view/login/login-form-view";
 import "./login.css";
 import { useLogin } from "../../../hooks/auth.hooks";
 
 const Login = () => {
-  const { mutateAsync: login } = useLogin();
+  
+  const onSuccess = () => {
+    notification.success({
+      message: "Success!",
+      description: "You have successfully logged in!",
+    });
+  };
+
+  const { mutate: login } = useLogin(onSuccess);
+
   const onFinish = (values) => {
     login(values);
-    console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log("Failed:", { errorInfo });
   };
 
   return (

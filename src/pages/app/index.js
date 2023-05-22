@@ -8,7 +8,7 @@ const AppRoutes = () => {
     <AppLayout>
       <Routes>
         <Route exact path="/app" element={<Homepage />} />
-        <Route exact path="/" element={<Navigate to={"/app"} />} />
+        <Route exact path="*" element={<Navigate to={"/app"} />} />
       </Routes>
     </AppLayout>
   );
