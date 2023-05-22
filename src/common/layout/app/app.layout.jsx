@@ -7,14 +7,19 @@ import AppHeader from "../../components/navbar/app.header";
 
 const AppLayout = ({ children }) => {
   return (
-    <Layout>
+    <Layout style={{
+      minHeight:"100vh"
+    }}>
       <AppHeader />
       <Layout>
         <AppNavbar />
-        {children}
+        <span
+          style={{
+            display:"flex",
+            width:"100%",
+          }}
+        >{children}</span>
       </Layout>
-
-     
     </Layout>
   );
 };
