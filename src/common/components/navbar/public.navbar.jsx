@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Layout, Menu } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginOutlined, HomeOutlined } from "@ant-design/icons";
-import logo from "../../../assets/iyte_logo.png";
+import { Layout, Menu } from "antd";
+import { LoginOutlined } from "@ant-design/icons";
+import logo from "../../../assets/iyte_logo_eng.png"
 
 const { Header } = Layout;
 

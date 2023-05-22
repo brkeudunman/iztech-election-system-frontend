@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/iyte_logo.png";
+import logo from "../../../assets/iyte_logo_eng.png"
 
 const AppHeader = () => {
   return (
