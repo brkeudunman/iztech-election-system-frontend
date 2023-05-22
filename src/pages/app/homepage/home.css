@@ -18,6 +18,36 @@
   text-decoration: underline;
 }
 
+.info-profile img {
+  width: 68px;
+  height: 82px;
+  margin-right: 24px;
+}
+
+.info-profile {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.info-profile .text-info {
+  margin: 0;
+}
+
+.info-text {
+  margin-bottom: 20px;
+}
+
+.election-info {
+  margin-bottom: 48px;
+}
+
 .timer {
+  margin-top: 50px;
+  padding: 10px 60px;
   align-self: end;
+  background-color: #303841;
+  color: white;
+  border-radius: 8px;
 }

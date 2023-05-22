@@ -43,7 +43,7 @@ const AppHeader = () => {
       </Link>
       <div>Iztech Student Election System</div>
       <BasicDropdown
-        title={"John Doe"}
+        title={"B. Yılmaz"}
         items={[
           {
             label: (
@@ -54,7 +54,7 @@ const AppHeader = () => {
                   alignItems: "center",
                   gap: "6px",
                 }}
-                onClick={()=>logout()}
+                onClick={() => logout()}
               >
                 <LogoutOutlined
                   style={{
