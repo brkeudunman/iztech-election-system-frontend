@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/iyte_logo_eng.png"
+import logo from "../../../assets/iyte_logo_eng.png";
 
 const AppHeader = () => {
   return (
     <div
       style={{
-        backgroundColor: "#001d66",
+        backgroundColor: "#303841",
         display: "flex",
         justifyContent: "center",
       }}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
-import logo from "../../../assets/iyte_logo_eng.png"
+import logo from "../../../assets/iyte_logo_eng.png";
 
 const { Header } = Layout;
 
@@ -27,7 +27,7 @@ const PublicNavbar = () => {
     <>
       <Header
         style={{
-          backgroundColor: "#001d66",
+          backgroundColor: "#303841",
           display: "flex",
           justifyContent: "space-between",
         }}
@@ -42,7 +42,8 @@ const PublicNavbar = () => {
           }}
           className="demo-logo"
         >
-          <img width={50} src={logo}/>
+          <img width={50} src={logo} alt="" />
+          <h4 style={{ color: "white" }}> Izmir Institute of Technology</h4>
         </Link>
         <Menu
           mode="horizontal"
