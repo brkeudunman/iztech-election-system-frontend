@@ -1,18 +1,19 @@
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu } from "antd";
 import {
-  DesktopOutlined,
+  BookOutlined,
+  CalendarOutlined,
+  CheckOutlined,
   FileOutlined,
   HomeOutlined,
-  LogoutOutlined,
+  PaperClipOutlined,
   PieChartOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
 import React, { useState } from "react";
-import { useLogOutUserMe } from "../../../hooks/auth.hooks";
 import { useNavigate } from "react-router-dom";
 const { Sider } = Layout;
 
-function getItem(label, key, icon, children) {
+function getItem(label, key, icon, onclick) {
   return {
     label,
     key,
@@ -22,21 +23,17 @@ function getItem(label, key, icon, children) {
 }
 
 const AppNavbar = () => {
-  const logout = useLogOutUserMe(() => navigate("/"));
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
 
   const items = [
     getItem("Home", "app", <HomeOutlined />),
-    getItem("View Results", "/results", <PieChartOutlined />),
-    getItem("Option 2", "3", <DesktopOutlined />),
-    getItem("Team", "4", <TeamOutlined />),
-    getItem("Files", "5", <FileOutlined />),
-    getItem(
-      <div onClick={() => logout()}>Log Out</div>,
-      "6",
-      <LogoutOutlined />
-    ),
+    getItem("Vote", "vote", <CheckOutlined />),
+    getItem("Candidateship", "candidateship", <PaperClipOutlined />),
+    getItem("Results", "results", <PieChartOutlined />),
+    getItem("Calendar", "calendar", <CalendarOutlined />),
+    getItem("Candidates", "candidates", <TeamOutlined />),
+    getItem("User Guide", "user-guide", <BookOutlined />),
   ];
 
   return (
@@ -51,6 +48,9 @@ const AppNavbar = () => {
         defaultSelectedKeys={[window.location.pathname]}
         mode="inline"
         items={items}
+        onClick={(e) => {
+          navigate(e.key);
+        }}
       />
     </Sider>
   );

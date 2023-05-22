@@ -15,11 +15,14 @@ export const useLogin = (onSuccess) => {
       window.dispatchEvent(new Event("storage"));
       onSuccess();
     },
+
     onError: (response) => {
-      notification.error({
-        message: "Error: " + response.status,
-        description: response.message,
-      });
+      if(response.status === 404){
+        notification.error({
+          message: "Error!",
+          description: "Email or password is invalid.",
+        });
+      }
     },
   }
   )  

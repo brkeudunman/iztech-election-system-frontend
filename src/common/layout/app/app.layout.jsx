@@ -11,9 +11,10 @@ const AppLayout = ({ children }) => {
       <AppHeader />
       <Layout>
         <AppNavbar />
+        {children}
       </Layout>
 
-      {children}
+     
     </Layout>
   );
 };
