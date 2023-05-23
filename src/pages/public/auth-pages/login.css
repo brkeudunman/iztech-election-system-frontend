@@ -8,9 +8,9 @@
 .login-form {
   padding: 24px;
   padding-bottom: 12px;
-  border: solid #cfcfc4 1px;
+  border: solid #bdbdac 1px;
   border-radius: 8px;
-  box-shadow: 1px 1px 0px 0px #cfcfc4;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .form-title {
@@ -19,15 +19,15 @@
   font-size: large;
   margin-bottom: 12px;
   padding-bottom: 6px;
-  border-bottom: solid 1px #cfcfc4;
+  border-bottom: solid 1px #bdbdac;
 }
 
 .login-button {
-    background-color: rgb(16, 233, 0);
+    background-color: rgb(48, 56, 65);
     border-radius: 10px;
-    border: 2px solid rgb(212, 212, 212);
+    border: 1px solid rgb(158, 158, 158);
     padding: 5px 10px 5px 10px;
-    color: rgb(0, 43, 43);
+    color: rgb(255, 255, 255);
     margin-top: 10px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
