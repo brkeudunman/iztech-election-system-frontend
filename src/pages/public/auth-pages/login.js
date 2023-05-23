@@ -1,11 +1,9 @@
-import { Col, Form, Row, notification } from "antd";
+import { Col, Form, Input, Row, notification } from "antd";
 import React from "react";
-import LoginFormView from "../../../common/view/login/login-form-view";
 import "./login.css";
 import { useLogin } from "../../../hooks/auth.hooks";
 
 const Login = () => {
-  
   const onSuccess = () => {
     notification.success({
       message: "Success!",
@@ -18,6 +16,7 @@ const Login = () => {
   const onFinish = (values) => {
     login(values);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", { errorInfo });
   };
@@ -37,7 +36,37 @@ const Login = () => {
           autoComplete="off"
         >
           <div className="form-title">Log In</div>
-          <LoginFormView />
+          <Form.Item
+            label="E-mail"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your e-mail!",
+              },
+            ]}
+          >
+            <Input placeholder="example@gmail.com" />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your password!",
+              },
+            ]}
+          >
+            <Input.Password placeholder="example123" />
+          </Form.Item>
+
+          <Form.Item>
+            <button className="login-button" type="submit">
+              Submit
+            </button>
+          </Form.Item>
         </Form>
       </Col>
     </Row>
