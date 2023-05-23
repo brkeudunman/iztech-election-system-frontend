@@ -2,6 +2,7 @@ import { Col, Form, Input, Row, notification } from "antd";
 import React from "react";
 import "./login.css";
 import { useLogin } from "../../../hooks/auth.hooks";
+import LoginFormView from "../../../common/view/login/login-form-view";
 
 const Login = () => {
   const onSuccess = () => {
@@ -36,7 +37,17 @@ const Login = () => {
           autoComplete="off"
         >
           <div className="form-title">Log In</div>
-          <Form.Item
+          <LoginFormView />
+          {
+            // Burası common/view/login klasörünün altında login form viewda yazıldı.
+            //
+            // @talha değişikliklerin ant design'a uyuyor kanka bir yere kadar doğru yapmışsın ancak doğrussuna bakmak için
+            // dediğim klasöre gidip login-form-view.jsxin altına bakabilirsin.
+          }
+
+          {/*
+            ------------ Buradaki kodu silmiyorum şimdilik, yaptığın değişikliklerle karşılaştırabilirsin @talha
+              <Form.Item
             label="E-mail"
             name="email"
             rules={[
@@ -66,7 +77,8 @@ const Login = () => {
             <button className="login-button" type="submit">
               Submit
             </button>
-          </Form.Item>
+          </Form.Item> 
+            */}
         </Form>
       </Col>
     </Row>
