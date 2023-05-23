@@ -5,7 +5,8 @@ import getToken from "../util/get-token";
 
 const ApplicationRoutes = () => {
   const [userAuthenticationToken, setUserAuthenticationToken] = useState(
-    getToken()
+    // getToken()
+    true
   );
 
   window.addEventListener("storage", () => {

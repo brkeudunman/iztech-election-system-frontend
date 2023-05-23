@@ -18,17 +18,16 @@
   text-decoration: underline;
 }
 
+.info-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 .info-profile img {
   width: 68px;
   height: 82px;
   margin-right: 24px;
-}
-
-.info-profile {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin-bottom: 30px;
 }
 
 .info-profile .text-info {
@@ -46,7 +45,7 @@
 .timer {
   margin-top: 50px;
   padding: 10px 60px;
-  align-self: end;
+  align-self: flex-end;
   background-color: #303841;
   color: white;
   border-radius: 8px;
