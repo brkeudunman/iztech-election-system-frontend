@@ -38,47 +38,6 @@ const Login = () => {
         >
           <div className="form-title">Log In</div>
           <LoginFormView />
-          {
-            // Burası common/view/login klasörünün altında login form viewda yazıldı.
-            //
-            // @talha değişikliklerin ant design'a uyuyor kanka bir yere kadar doğru yapmışsın ancak doğrussuna bakmak için
-            // dediğim klasöre gidip login-form-view.jsxin altına bakabilirsin.
-          }
-
-          {/*
-            ------------ Buradaki kodu silmiyorum şimdilik, yaptığın değişikliklerle karşılaştırabilirsin @talha
-              <Form.Item
-            label="E-mail"
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: "Please enter your e-mail!",
-              },
-            ]}
-          >
-            <Input placeholder="example@gmail.com" />
-          </Form.Item>
-
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please enter your password!",
-              },
-            ]}
-          >
-            <Input.Password placeholder="example123" />
-          </Form.Item>
-
-          <Form.Item>
-            <button className="login-button" type="submit">
-              Submit
-            </button>
-          </Form.Item> 
-            */}
         </Form>
       </Col>
     </Row>

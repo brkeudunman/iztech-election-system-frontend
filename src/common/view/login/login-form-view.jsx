@@ -5,42 +5,36 @@ const LoginFormView = () => {
   return (
     <>
       <Form.Item
-        label="Email"
-        name="email"
-        validateTrigger={onsubmit}
-        rules={[
-          {
-            required: true,
-            message: "Please enter your email!",
-          },
-          {
-            type:"email",
-            message: "The format of the input should be email."
-            
-          }
-        ]}
-      >
-        <Input/>
-      </Form.Item>
+            label="E-mail"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your e-mail!",
+              },
+            ]}
+          >
+            <Input placeholder="example@gmail.com" />
+          </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your password!",
+              },
+            ]}
+          >
+            <Input.Password placeholder="example123" />
+          </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+          <Form.Item>
+            <button className="login-button" type="submit">
+              Submit
+            </button>
+          </Form.Item>
     </>
   );
 };
