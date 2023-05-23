@@ -29,12 +29,6 @@ const LoginFormView = () => {
       >
         <Input.Password placeholder="example123" />
       </Form.Item>
-
-      <Form.Item>
-        <button className="login-button" type="submit">
-          Submit
-        </button>
-      </Form.Item>
     </>
   );
 };

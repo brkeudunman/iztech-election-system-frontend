@@ -1,4 +1,4 @@
-import { Col, Form, Input, Row, notification } from "antd";
+import { Col, Form, Input, Row, notification, Button } from "antd";
 import React from "react";
 import "./login.css";
 import { useLogin } from "../../../hooks/auth.hooks";
@@ -38,6 +38,9 @@ const Login = () => {
         >
           <div className="form-title">Log In</div>
           <LoginFormView />
+          <Form.Item>
+            <Button className="login-button" type="primary" htmlType="submit">Submit</Button>
+          </Form.Item>
         </Form>
       </Col>
     </Row>
