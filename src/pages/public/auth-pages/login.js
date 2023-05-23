@@ -38,9 +38,7 @@ const Login = () => {
         >
           <div className="form-title">Log In</div>
           <LoginFormView />
-          <Form.Item>
-            <Button className="login-button" type="primary" htmlType="submit">Submit</Button>
-          </Form.Item>
+          
         </Form>
       </Col>
     </Row>
