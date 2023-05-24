@@ -12,7 +12,11 @@ const Homepage = () => {
           <img src={studentpic} alt="" />
           <div className="info-text">
             <p id="student-name">
-              <strong>B. Yılmaz</strong>
+              <strong>
+                {window.localStorage.getItem("name") +
+                  " " +
+                  window.localStorage.getItem("surname")}
+              </strong>
             </p>
             <p className="text-info">Computer Engineering</p>
             <p className="text-info">3. Year Student</p>

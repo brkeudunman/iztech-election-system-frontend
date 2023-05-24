@@ -12,6 +12,10 @@ const LoginFormView = () => {
             required: true,
             message: "Please enter your e-mail!",
           },
+          {
+            type:"email",
+            message: "The input should be in email format",
+          }
         ]}
       >
         <Input placeholder="example@gmail.com" />
@@ -28,12 +32,11 @@ const LoginFormView = () => {
         ]}
       >
         <Input.Password placeholder="example123" />
-
-        <Form.Item>
-          <Button className="login-button" type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
+      </Form.Item>
+      <Form.Item>
+        <Button className="login-button" type="primary" htmlType="submit">
+          Login
+        </Button>
       </Form.Item>
     </>
   );

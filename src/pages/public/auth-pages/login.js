@@ -31,6 +31,7 @@ const Login = () => {
           initialValues={{
             remember: true,
           }}
+          validateTrigger={onsubmit}
           layout="vertical"
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}

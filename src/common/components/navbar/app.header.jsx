@@ -43,7 +43,11 @@ const AppHeader = () => {
       </Link>
       <div>Iztech Student Election System</div>
       <BasicDropdown
-        title={"B. Yılmaz"}
+        title={
+          window.localStorage.getItem("name") +
+          " " +
+          window.localStorage.getItem("surname")
+        }
         items={[
           {
             label: (
