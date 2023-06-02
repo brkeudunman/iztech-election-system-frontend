@@ -37,7 +37,7 @@ const Login = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <div className="form-title">Log In</div>
+          <div className="form-title">Iztech Election System</div>
           <LoginFormView />
           
         </Form>
