@@ -14,6 +14,6 @@ const ApplicationRoutes = () => {
     });
   });
 
-  return <>{true ? <AppRoutes /> : <PublicRoutes />}</>;
+  return <>{getToken() ? <AppRoutes /> : <PublicRoutes />}</>;
 };
 export default ApplicationRoutes;

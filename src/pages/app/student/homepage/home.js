@@ -1,8 +1,10 @@
 import React from "react";
 import "./home.css";
-import studentpic from "../../../assets/aragorn.jpg";
+import studentpic from "../../../../assets/aragorn.jpg";
 
 const Homepage = () => {
+  
+
   return (
     <section className="container">
       <section className="stu-info">

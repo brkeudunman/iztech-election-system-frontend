@@ -1,5 +1,5 @@
 import { post } from "../api";
 
-export const addFile = (data) => {
+export const sendFile = (data) => {
   post("/file", data);
 };
