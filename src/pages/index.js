@@ -17,6 +17,6 @@ const ApplicationRoutes = () => {
     });
   });
 
-  return <>{userAuthenticationToken ? <AppRoutes /> : <PublicRoutes />}</>;
+  return <>{true ? <AppRoutes /> : <PublicRoutes />}</>;
 };
 export default ApplicationRoutes;
