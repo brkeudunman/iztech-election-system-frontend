@@ -43,11 +43,11 @@ export const useGetVoters = (onSuccess) => {
   );
 };
 
-export const useAddVoter = (onSuccess, id) => {
+export const useAddVoter = (onSuccess) => {
   return useMutation(
     "add-voter",
     (data) => {
-      return addVoter(id, data);
+      return addVoter(data);
     },
     {
       onSuccess,

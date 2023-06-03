@@ -8,11 +8,11 @@ import {
 } from "./../api/application/application.api";
 import { useMutation, useQuery } from "react-query";
 
-export const useAddApplication = (onSuccess, id) => {
+export const useAddApplication = (onSuccess) => {
   return useMutation(
     "add-application",
     (data) => {
-      return addApplication(id, data);
+      return addApplication(data);
     },
     {
       onSuccess,

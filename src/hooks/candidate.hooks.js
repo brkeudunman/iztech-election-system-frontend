@@ -80,11 +80,11 @@ export const useGetCandidate = (onSuccess) => {
   );
 };
 
-export const useAddCandidate = (onSuccess, id) => {
+export const useAddCandidate = (onSuccess) => {
   return useMutation(
     "add-candidate",
     (data) => {
-      return addCandidate(id, data);
+      return addCandidate(data);
     },
     {
       onSuccess,

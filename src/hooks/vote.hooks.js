@@ -38,11 +38,11 @@ export const useGetVote = (onSuccess) => {
   );
 };
 
-export const useAddVote = (onSuccess, id) => {
+export const useAddVote = (onSuccess) => {
   return useMutation(
     "add-vote",
     (data) => {
-      return addVote(id, data);
+      return addVote(data);
     },
     {
       onSuccess,
