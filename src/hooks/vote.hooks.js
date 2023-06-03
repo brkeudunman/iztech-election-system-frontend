@@ -20,20 +20,15 @@ export const useGetAllVotes = (onSuccess) => {
   );
 };
 
-export const useGetVote = (onSuccess) => {
+export const useGetVote = (id, onSuccess, onError) => {
   return useQuery(
     "get-vote",
-    (id) => {
+    () => {
       return getVote(id);
     },
     {
       onSuccess,
-      onError: (error) => {
-        notification.error({
-          description: "Error while receiving vote",
-          message: error.message,
-        });
-      },
+      onError,
     }
   );
 };

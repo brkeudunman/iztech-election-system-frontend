@@ -62,10 +62,10 @@ export const useUpdateElection = (onSuccess, id) => {
   );
 };
 
-export const useGetElection = (onSuccess) => {
+export const useGetElection = (id, onSuccess) => {
   return useQuery(
     "get-election",
-    (id) => {
+    () => {
       return getElection(id);
     },
     {

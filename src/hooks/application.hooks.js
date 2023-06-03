@@ -62,20 +62,15 @@ export const useUpdateApplication = (onSuccess, id) => {
     );
   };
 
-export const useGetApplication = (onSuccess) => {
+export const useGetApplication = (id, onSuccess, onError) => {
   return useQuery(
     "get-application",
-    (id) => {
+    () => {
       return getApplication(id);
     },
     {
       onSuccess,
-      onError: (error) => {
-        notification.error({
-          description: "Error while receiving application",
-          message: error.message,
-        });
-      },
+      onError
     }
   );
 };

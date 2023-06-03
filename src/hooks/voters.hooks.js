@@ -7,10 +7,10 @@ import {
 } from "./../api/voter/voter.api";
 import { notification } from "antd";
 
-export const useGetVoter = (onSuccess) => {
+export const useGetVoter = (id, onSuccess) => {
   return useQuery(
     "get-all-voters",
-    (id) => {
+    () => {
       return getVoter(id);
     },
     {
