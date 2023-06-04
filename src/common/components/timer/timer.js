@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./timer.css"
 const Timer = ({ timeDiff }) => {
   return (
     <div className="timer">
