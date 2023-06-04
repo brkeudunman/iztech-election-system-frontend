@@ -56,7 +56,7 @@ const Homepage = () => {
       >
         <section className="stu-info">
           <h2 className="title2">Welcome, {user.name + " " + user.surname}</h2>
-          <h4 className="title">Student Information</h4>
+          <h4 className="title">User Information</h4>
           <div className="info-profile">
             <img src={studentpic} alt="" />
             <div className="info-text">
@@ -70,13 +70,13 @@ const Homepage = () => {
 
           <div className="election-info">
             <h4 className="title">Election Information</h4>
-            {(!isVoteLoading ?? voteError.status === 404) && (
-              <p>Vote Status: None</p>
+            {!isVoteLoading && (
+              <p>Vote Status: {voteError ? "None" : vote.status}</p>
             )}
-            {(!isApplicationLoading ?? applicationError.status === 404) && (
+            {!isApplicationLoading && (
               <p>
-                Candidateship Application: The user has not been applied for
-                candidateship
+                Application Status:{" "}
+                {applicationError ? "None" : application.status}
               </p>
             )}
           </div>
