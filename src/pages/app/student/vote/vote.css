@@ -15,14 +15,14 @@
   background-color: rgb(55, 55, 73);
   color: aliceblue;
   text-align: center;
-  margin: 30px 0px 30px 0px;
+  margin: 30px 0px 20px 0px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
 .top-section > img {
   width: 90px;
-  height: 100px;
+  height: 83px;
   float: left;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -31,20 +31,58 @@
 .top-section {
   background-color: rgb(55, 55, 73);
   color: aliceblue;
-  
+  margin-bottom: 0;
 }
 
 .items {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+  margin-bottom: 0px;
 }
 
 .timer {
-    padding: 0px 5px 0px 5px;
-    margin-top: 250px;
-    align-self: flex-end;
-    background-color: #303841;
-    color: white;
-    border-radius: 4px;
-  }
+  padding: 0px 5px 0px 5px;
+  margin-top: 310px;
+  margin-right: 50px;
+  align-self: flex-end;
+  background-color: #303841;
+  color: white;
+  border-radius: 4px;
+}
+
+.click {
+  background-color: rgb(191, 191, 207);
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.click > button {
+  background-color: rgb(191, 191, 207);
+  border: none;
+  outline: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  color: black;
+}
+
+.top-paragraph {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.top-paragraph p {
+  margin: 0;
+}
+
+.top-paragraph p:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.bottom-paragraph {
+  margin-top: 10px;
+}

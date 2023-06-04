@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import "./vote.css";
 import peterParkerImage from './peterparker.jpg';
+import { getTimeDifference } from "./../../../../util/get-time-difference";
+
 
 const VotePage = () => {
+  const [timeDiff, setTimeDiff] = useState({});
   return (
     <content className="container">
       <div className="heading">
@@ -10,13 +13,16 @@ const VotePage = () => {
       </div>
 
       <main className='items'>
+
         <div className='item'>
           <div className='top-section'>
             <img src={peterParkerImage} alt="Peter Parker" />
             <div className='content'>
-              <p>Peter Parker</p>
-              <p>Comp Eng.</p>
-              <p>3rd Class</p>
+              <div className='top-paragrapgh'>
+                <p>Peter Parker</p>
+                <p>Comp Eng.</p>
+              </div>
+              <p className='bottom-paragraph'>3rd Class</p>
             </div>
           </div>
 
@@ -69,10 +75,11 @@ const VotePage = () => {
             <button>Vote</button>
           </div>
         </div>
+
       </main>
 
       <div className="timer">
-        <h4>Remaining time: XXdays XXhours</h4>
+        <p> Remaining time: {timeDiff.days} Days {timeDiff.hours} Hours {timeDiff.minutes} Minutes </p>
       </div>
 
     </content>
