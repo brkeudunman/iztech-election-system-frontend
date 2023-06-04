@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./vote.css";
 import peterParkerImage from './peterparker.jpg';
 import { getTimeDifference } from "./../../../../util/get-time-difference";
+import { Button, Row } from "antd";
+import { Card } from 'antd';
 
-
+const { Meta } = Card;
 const VotePage = () => {
   const [timeDiff, setTimeDiff] = useState({});
   return (
@@ -13,68 +15,54 @@ const VotePage = () => {
       </div>
 
       <main className='items'>
-
         <div className='item'>
-          <div className='top-section'>
-            <img src={peterParkerImage} alt="Peter Parker" />
-            <div className='content'>
-              <div className='top-paragrapgh'>
-                <p>Peter Parker</p>
-                <p>Comp Eng.</p>
-              </div>
-              <p className='bottom-paragraph'>3rd Class</p>
-            </div>
-          </div>
+          <Card hoverable style={{ width: 240, backgroundColor: 'azure' }} cover={<img src={peterParkerImage} alt="Peter Parker" />}>
+            <Meta title="Peter Parker" description="Computer Engineer, 3rd Class" />
+          </Card>
 
-          <div className='click'>
-            <button>Vote</button>
-          </div>
+          <Row>
+            <Button style={{
+              width: "240px", backgroundColor: 'white'
+            }}>Vote!</Button>
+          </Row>
         </div>
 
         <div className='item'>
-          <div className='top-section'>
-            <img src={peterParkerImage} alt="Peter Parker" />
-            <div className='content'>
-              <p>Peter Parker</p>
-              <p>Comp Eng.</p>
-              <p>3rd Class</p>
-            </div>
-          </div>
+          <Card hoverable style={{ width: 240, backgroundColor: 'azure' }} cover={<img src={peterParkerImage} alt="Peter Parker" />}>
+            <Meta title="Peter Parker" description="Computer Engineer, 3rd Class" />
+          </Card>
 
-          <div className='click'>
-            <button>Vote</button>
-          </div>
+          <Row>
+            <Button style={{
+              width: "240px", backgroundColor: 'white'
+            }}>Vote!</Button>
+          </Row>
         </div>
 
         <div className='item'>
-          <div className='top-section'>
-            <img src={peterParkerImage} alt="Peter Parker" />
-            <div className='content'>
-              <p>Peter Parker</p>
-              <p>Comp Eng.</p>
-              <p>3rd Class</p>
-            </div>
-          </div>
+          <Card hoverable style={{ width: 240, backgroundColor: 'azure' }} cover={<img src={peterParkerImage} alt="Peter Parker" />}>
+            <Meta title="Peter Parker" description="Computer Engineer, 3rd Class" />
+          </Card>
 
-          <div className='click'>
-            <button>Vote</button>
-          </div>
+          <Row>
+            <Button style={{
+              width: "240px", backgroundColor: 'white'
+            }}>Vote!</Button>
+          </Row>
         </div>
 
         <div className='item'>
-          <div className='top-section'>
-            <img src={peterParkerImage} alt="Peter Parker" />
-            <div className='content'>
-              <p>Peter Parker</p>
-              <p>Comp Eng.</p>
-              <p>3rd Class</p>
-            </div>
-          </div>
+          <Card hoverable style={{ width: 240, backgroundColor: 'azure' }} cover={<img src={peterParkerImage} alt="Peter Parker" />}>
+            <Meta title="Peter Parker" description="Computer Engineer, 3rd Class" />
+          </Card>
 
-          <div className='click'>
-            <button>Vote</button>
-          </div>
+          <Row>
+            <Button style={{
+              width: "240px", backgroundColor: 'white'
+            }}>Vote!</Button>
+          </Row>
         </div>
+
 
       </main>
 
