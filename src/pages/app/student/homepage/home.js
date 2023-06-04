@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import studentpic from "../../../../assets/aragorn.jpg";
+import Timer from "../../../../common/components/timer/timer.js";
 import { useGetVote } from "../../../../hooks/vote.hooks";
 import { useGetApplication } from "../../../../hooks/application.hooks";
 import { useGetElection } from "../../../../hooks/election.hooks";
@@ -70,10 +71,8 @@ const Homepage = () => {
           )}
         </div>
       </section>
-      <div className="timer">
-        <h4>The Time Left Until the End of The Election</h4>
-        <p>{timeDiff.days} Days {timeDiff.hours} Hours {timeDiff.minutes} Minutes </p>
-      </div>
+
+      <Timer timeDiff={timeDiff} />
     </section>
   );
 };
