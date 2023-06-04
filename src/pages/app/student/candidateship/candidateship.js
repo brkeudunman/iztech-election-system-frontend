@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
-import "./candidateship.css";
-import peterParkerImage from "./peterparker.jpg";
 import { getTimeDifference } from "./../../../../util/get-time-difference";
 import Container from "../../../../common/components/container/container";
+import Timer from "../../../../common/components/timer/timer";
+import CandidateshipCard from "../../../../common/components/cards/candidateship/candidateship-card";
 
 const CandidateshipPage = () => {
   const [timeDiff, setTimeDiff] = useState({});
   return (
     <Container>
-      <div className="main">
-        <div className="content">
-          <img src={peterParkerImage} alt="Peter Parker" />
-          <p>Peter Parker</p>
-          <p>Computer Engineering</p>
-          <p>3rd Class</p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CandidateshipCard />
         </div>
 
-        <div className="bottom-part">
-          <button>Apply for candidacy for XXXX</button>
-        </div>
-      </div>
-
-      <div className="timer">
-        <p>
-          {" "}
-          Remaining time: {timeDiff.days} Days {timeDiff.hours} Hours{" "}
-          {timeDiff.minutes} Minutes{" "}
-        </p>
+        <Timer timeDiff={timeDiff} />
       </div>
     </Container>
   );
