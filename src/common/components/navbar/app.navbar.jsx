@@ -3,7 +3,6 @@ import {
   BookOutlined,
   CalendarOutlined,
   CheckOutlined,
-  FileOutlined,
   HomeOutlined,
   PaperClipOutlined,
   PieChartOutlined,
@@ -12,13 +11,14 @@ import {
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const { Sider } = Layout;
+const { Item: MenuItem } = Menu;
 
-function getItem(label, key, icon, onclick) {
+function getItem(label, key, icon, val) {
   return {
     label,
     key,
     icon,
-    onclick,
+    disabled: val ? true : undefined,
   };
 }
 
@@ -28,12 +28,12 @@ const AppNavbar = () => {
 
   const items = [
     getItem("Home", "app", <HomeOutlined />),
-    getItem("Vote", "vote", <CheckOutlined />),
-    getItem("Candidateship", "candidateship", <PaperClipOutlined />),
-    getItem("Results", "results", <PieChartOutlined />),
-    getItem("Calendar", "calendar", <CalendarOutlined />),
-    getItem("Candidates", "candidates", <TeamOutlined />),
-    getItem("User Guide", "user-guide", <BookOutlined />),
+    getItem("Vote", "app/vote", <CheckOutlined />),
+    getItem("Candidateship", "app/candidateship", <PaperClipOutlined />),
+    getItem("Results", "app/results", <PieChartOutlined />, true),
+    getItem("Calendar", "app/calendar", <CalendarOutlined />, true),
+    getItem("Candidates", "app/candidates", <TeamOutlined />),
+    getItem("User Guide", "app/user-guide", <BookOutlined />, true),
   ];
 
   return (
@@ -47,11 +47,23 @@ const AppNavbar = () => {
       <Menu
         defaultSelectedKeys={[window.location.pathname]}
         mode="inline"
-        items={items}
         onClick={(e) => {
           navigate(e.key);
         }}
-      />
+      >
+        {items.map(
+          (item) =>
+            !items.disabled && (
+              <MenuItem
+                key={item.key}
+                icon={item.icon}
+                disabled={item.disabled}
+              >
+                {item.label}
+              </MenuItem>
+            )
+        )}
+      </Menu>
     </Sider>
   );
 };

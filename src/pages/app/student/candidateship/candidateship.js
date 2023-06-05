@@ -1,11 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { getTimeDifference } from "./../../../../util/get-time-difference";
+import React from "react";
 import Container from "../../../../common/components/container/container";
 import Timer from "../../../../common/components/timer/timer";
 import CandidateshipCard from "../../../../common/components/cards/candidateship/candidateship-card";
+import { useAddApplication } from "../../../../hooks/application.hooks";
+import { Spin, notification } from "antd";
+import { useGetVoter } from "../../../../hooks/voters.hooks";
 
-const CandidateshipPage = () => {
-  const [timeDiff, setTimeDiff] = useState({});
+const CandidateshipPage = ({ user }) => {
+  const {
+    data: voter,
+    error: voterError,
+    isLoading: isVoterLoading,
+  } = useGetVoter(user.id);
+
+  console.log(user.id);
+
+  const {
+    mutate: applyCandidateship,
+    error,
+    isLoading,
+  } = useAddApplication(() => {
+    notification.success({
+      message: "Success!",
+    });
+  });
+
+  const onApply = () => {
+    applyCandidateship(user.id);
+  };
+
   return (
     <Container>
       <div
@@ -13,19 +36,21 @@ const CandidateshipPage = () => {
           display: "flex",
           flexDirection: "column",
           width: "100%",
+          alignItems: "",
           justifyContent: "space-between",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <CandidateshipCard />
-        </div>
-
-        <Timer timeDiff={timeDiff} />
+        <Spin spinning={isLoading}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <CandidateshipCard onApply={onApply} />
+          </div>
+        </Spin>
+        <Timer election={voter?.election} />
       </div>
     </Container>
   );

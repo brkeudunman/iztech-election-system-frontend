@@ -5,44 +5,26 @@ import Timer from "../../../../common/components/timer/timer.js";
 import Container from "../../../../common/components/container/container";
 import { useGetVote } from "../../../../hooks/vote.hooks";
 import { useGetApplication } from "../../../../hooks/application.hooks";
-import { useGetElection } from "../../../../hooks/election.hooks";
 import { useGetVoter } from "./../../../../hooks/voters.hooks";
-import { getTimeDifference } from "./../../../../util/get-time-difference";
 
-const Homepage = () => {
-  const user = {
-    id: window.localStorage.getItem("id"),
-    name: window.localStorage.getItem("name"),
-    surname: window.localStorage.getItem("surname"),
-  };
+const Homepage = ({ user }) => {
+  const {
+    data: voter,
+    error: voterError,
+    isLoading: isVoterLoading,
+  } = useGetVoter(user.id);
 
   const {
     data: vote,
     error: voteError,
     isLoading: isVoteLoading,
-  } = useGetVote(user?.id);
+  } = useGetVote(user.id);
 
   const {
     data: application,
     error: applicationError,
     isLoading: isApplicationLoading,
-  } = useGetApplication(user?.id);
-
-  const {
-    data: voter,
-    error: voterError,
-    isLoading: isVoterLoading,
-  } = useGetVoter(user?.id);
-
-  const [timeDiff, setTimeDiff] = useState({});
-
-  useEffect(() => {
-    if (!isVoteLoading && !voterError) {
-      const startDate = new Date(voter.election.startDate);
-      const endDate = new Date(voter.election.endDate);
-      setTimeDiff(getTimeDifference(startDate, endDate));
-    }
-  }, [isVoterLoading]);
+  } = useGetApplication(user.id);
 
   return (
     <Container>
@@ -82,7 +64,7 @@ const Homepage = () => {
           </div>
         </section>
 
-        <Timer timeDiff={timeDiff} />
+        <Timer election={voter?.election} />
       </div>
     </Container>
   );

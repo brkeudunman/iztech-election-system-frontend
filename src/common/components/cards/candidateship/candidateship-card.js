@@ -2,7 +2,7 @@ import React from "react";
 import "./candidateship-card.css";
 import peterParkerImage from "../../../../assets/peterparker.jpg";
 
-const CandidateshipCard = () => {
+const CandidateshipCard = ({ onApply }) => {
   return (
     <div className="main">
       <div className="content">
@@ -13,7 +13,7 @@ const CandidateshipCard = () => {
       </div>
 
       <div className="bottom-part">
-        <button>Apply for candidacy for XXXX</button>
+        <button onClick={onApply}>Apply for candidacy for XXXX</button>
       </div>
     </div>
   );

@@ -4,18 +4,22 @@ import Homepage from "./student/homepage/home";
 import AppLayout from "../../common/layout/app/app.layout";
 import Candidates from "./student/candidates/candidates";
 import VotePage from "./student/vote/vote";
-import CandidateshipPage from './student/candidateship/candidateship';
+import CandidateshipPage from "./student/candidateship/candidateship";
 
-const AppRoutes = () => {
+const AppRoutes = ({ user }) => {
   return (
     <AppLayout>
       <Routes>
-        <Route exact path="/app" element={<Homepage />} />
-        <Route exact path="/calendar" element={<Homepage />} />
-        <Route exact path="/candidates" element={<Candidates />} />
-        <Route exact path="/candidateship" element={<CandidateshipPage />} />
-        <Route exact path="/results" element={<Homepage />} />
-        <Route exact path="/vote" element={<VotePage />} />
+        <Route exact path="/app" element={<Homepage user={user} />} />
+        <Route exact path="/app/calendar" element={<Homepage user={user} />} />
+        <Route exact path="/app/candidates" element={<Candidates />} />
+        <Route
+          exact
+          path="/app/candidateship"
+          element={<CandidateshipPage user={user} />}
+        />
+        <Route exact path="/app/results" element={<Homepage user={user} />} />
+        <Route exact path="/app/vote" element={<VotePage user={user} />} />
         <Route exact path="*" element={<Navigate to={"/app"} />} />
       </Routes>
     </AppLayout>

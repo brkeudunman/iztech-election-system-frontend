@@ -9,7 +9,7 @@ const PublicRoutes = () => {
       <Routes>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/" element={<Home />} />
-        <Route exact path="*" element={<Navigate to={"/"} />} />
+      
       </Routes>
     </PublicLayout>
   );
