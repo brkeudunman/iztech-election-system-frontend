@@ -3,6 +3,7 @@ import { useGetAllCandidates } from "../../../../hooks/candidate.hooks";
 import Container from "../../../../common/components/container/container";
 import { Spin, Table } from "antd";
 import { useGetElection } from "../../../../hooks/election.hooks";
+import Title from "antd/es/typography/Title";
 
 const Election = ({ electionId }) => {
   const { data: election, isLoading } = useGetElection(electionId);
@@ -47,6 +48,9 @@ const Candidates = () => {
   return (
     <Container>
       <div style={{ width: "100%" }}>
+      <Title level={4}>Candidates</Title>
+          <hr></hr>
+          <br></br>
         <Table dataSource={candidates?.content} columns={columns} />
       </div>
     </Container>

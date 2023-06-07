@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./home.css";
 import studentpic from "../../../../assets/aragorn.jpg";
 import Timer from "../../../../common/components/timer/timer.js";
@@ -7,7 +7,6 @@ import Container from "../../../../common/components/container/container";
 import { useGetVoter } from "./../../../../hooks/voters.hooks";
 import { useGetCandidate } from "../../../../hooks/candidate.hooks";
 import { Col, Row } from "antd";
-import { useGetAllElections } from './../../../../hooks/election.hooks';
 
 const Homepage = ({ user }) => {
   const {
@@ -15,17 +14,6 @@ const Homepage = ({ user }) => {
     error: voterError,
     isLoading: isVoterLoading,
   } = useGetVoter(user.id);
-
-  
-  const [endTime, setEndTime] = useState(null);
-  const { data: elections, isSuccess: isElections } = useGetAllElections();
-
-  useEffect(() => {
-    if (elections) {
-      setEndTime(new Date(elections.content[0].endDate).getTime());
-    }
-  }, [elections]);
-
 
   const {
     data: candidate,
@@ -63,18 +51,20 @@ const Homepage = ({ user }) => {
           </div>
 
           <div className="election-info">
-            <h4 className="title">Election Information</h4>
-            {!isCandidateLoading && (
-              <p>
-                Application Status:{" "}
-                <strong>
-                  {candidateError
-                    ? "None"
-                    : candidate.application.status === "NEW"
-                    ? "Pending"
-                    : candidate.application.status}
-                </strong>
-              </p>
+            {!isCandidateLoading && !candidateError && (
+              <>
+                <h4 className="title">Election Information</h4>
+                <p>
+                  Application Status:{" "}
+                  <strong>
+                    {candidateError
+                      ? "None"
+                      : candidate.application.status === "NEW"
+                      ? "Pending"
+                      : candidate.application.status}
+                  </strong>
+                </p>
+              </>
             )}
           </div>
         </section>
@@ -85,7 +75,7 @@ const Homepage = ({ user }) => {
           justify={"end"}
         >
           <Col>
-            <Timer/>
+            <Timer />
           </Col>
         </Row>
       </div>

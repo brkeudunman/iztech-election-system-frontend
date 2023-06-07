@@ -21,7 +21,6 @@ const PublicNavbar = () => {
       label: "Result",
       key: "results",
       icon: <BarChartOutlined />,
-      disabled:true,
     },
   ];
 

@@ -7,18 +7,21 @@ import { useGetVoter } from "../../../hooks/voters.hooks";
 
 const VoteCards = ({ candidates }) => {
   const { data: voter } = useGetVoter(window.localStorage.getItem("id"));
- 
+
   return (
     candidates && (
       <main className="items">
         {voter &&
-          candidates.content.map((stuInfo) => (
-            <VoteCard
-              voter={voter}
-              election={voter.election}
-              candidate={stuInfo}
-            />
-          ))}
+          candidates.content.map(
+            (stuInfo) =>
+              stuInfo.application?.status === "APPROVED" && (
+                <VoteCard
+                  voter={voter}
+                  election={voter.election}
+                  candidate={stuInfo}
+                />
+              )
+          )}
       </main>
     )
   );

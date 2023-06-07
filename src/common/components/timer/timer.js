@@ -8,12 +8,12 @@ const Timer = () => {
 
   useEffect(() => {
     if (elections) {
-      setEndTime(new Date(elections.content[0].endDate).getTime());
+      setEndTime(new Date(elections?.content[0]?.endDate).getTime());
     }
   }, [elections]);
 
   return (
-    <Spin spinning={!elections}>
+    <Spin spinning={elections?.content.length === 0}>
       <Countdown
         format="DD:HH:mm:ss"
         title="The Time Left Until the End of The Election"

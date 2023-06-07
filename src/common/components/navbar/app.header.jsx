@@ -57,15 +57,19 @@ const AppHeader = () => {
                   justifyItems: "center",
                   alignItems: "center",
                   gap: "6px",
+                  
                 }}
                 onClick={() => logout()}
               >
                 <LogoutOutlined
                   style={{
                     color: "red",
+                    fontSize:"16px"
                   }}
                 />
-                <span>Logout</span>
+                <span style={{
+                  fontSize:"16px"
+                }}>Logout</span>
               </div>
             ),
           },

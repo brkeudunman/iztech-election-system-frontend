@@ -7,6 +7,7 @@ import {
   PaperClipOutlined,
   PieChartOutlined,
   TeamOutlined,
+  InsertRowAboveOutlined,
 } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -37,9 +38,15 @@ const AppNavbar = ({ user }) => {
   const [startTime, setStartTime] = useState(null);
   const [isStarted, setIsStarted] = useState(false);
 
+  const compareNowWithEndDate = () => {
+    return (
+      new Date(elections?.content[0]?.endDate).getTime() < new Date().getTime()
+    );
+  };
+
   useEffect(() => {
     if (elections) {
-      setStartTime(new Date(elections.content[0].startDate).getTime());
+      setStartTime(new Date(elections?.content[0]?.startDate).getTime());
     }
   }, [elections]);
 
@@ -58,19 +65,35 @@ const AppNavbar = ({ user }) => {
 
   const items = [
     getItem("Home", "app", <HomeOutlined />),
-    getItem("Vote", "app/vote", <CheckOutlined />, (!isStarted || !student)),
+    getItem(
+      "Vote",
+      "app/vote",
+      <CheckOutlined />,
+      !isStarted || !student || !compareNowWithEndDate //todo !'i sil 
+    ),
     getItem(
       "Candidateship",
       "app/candidateship",
       <PaperClipOutlined />,
       isStarted || !student
     ),
-    getItem("Results", "app/results", <PieChartOutlined />, isStarted),
+    getItem(
+      "Results",
+      "app/results",
+      <PieChartOutlined />,
+      !compareNowWithEndDate
+    ),
     getItem(
       "Calendar",
       "app/calendar",
       <CalendarOutlined />,
       !personnel && personnel?.personnelRole !== "RECTOR"
+    ),
+    getItem(
+      "Staff List",
+      "app/staff",
+      <InsertRowAboveOutlined />,
+      !personnel
     ),
     getItem("Candidates", "app/candidates", <TeamOutlined />),
     getItem("User Guide", "app/user-guide", <BookOutlined />, true),
