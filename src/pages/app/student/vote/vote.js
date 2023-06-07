@@ -28,7 +28,7 @@ const VotePage = () => {
       >
         <div>
           <div className="heading">
-            <p>Computer Engineering Department Representative Selection</p>
+            <p>Department Representative Selection</p>
           </div>
 
           <VoteCards candidates={candidates} />
