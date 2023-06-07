@@ -12,6 +12,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetPersonnel } from "../../../hooks/personnel.hooks";
 import { useGetVoter } from "./../../../hooks/voters.hooks";
+import { useGetAllElections } from "../../../hooks/election.hooks";
 const { Sider } = Layout;
 const { Item: MenuItem } = Menu;
 
@@ -27,17 +28,20 @@ function getItem(label, key, icon, val) {
 const AppNavbar = ({ user }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
-  const { data: personnel,isSuccess:isPersonnelSuccess } = useGetPersonnel(user.id);
+  const { data: elections, isSuccess: isElections } = useGetAllElections();
+  const { data: personnel, isSuccess: isPersonnelSuccess } = useGetPersonnel(
+    user.id
+  );
   const { data: student } = useGetVoter(user.id);
 
   const [startTime, setStartTime] = useState(null);
   const [isStarted, setIsStarted] = useState(false);
-  console.log(personnel);
+
   useEffect(() => {
-    if (student) {
-      setStartTime(new Date(student.election.startDate).getTime());
+    if (elections) {
+      setStartTime(new Date(elections.content[0].startDate).getTime());
     }
-  }, [personnel, student]);
+  }, [elections]);
 
   useEffect(() => {
     if (startTime) {
@@ -54,7 +58,7 @@ const AppNavbar = ({ user }) => {
 
   const items = [
     getItem("Home", "app", <HomeOutlined />),
-    getItem("Vote", "app/vote", <CheckOutlined />, !isStarted),
+    getItem("Vote", "app/vote", <CheckOutlined />, (!isStarted || !student)),
     getItem(
       "Candidateship",
       "app/candidateship",

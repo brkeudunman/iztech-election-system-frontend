@@ -6,8 +6,8 @@ import Container from "../../../../common/components/container/container";
 
 import { useGetVoter } from "./../../../../hooks/voters.hooks";
 import { useGetCandidate } from "../../../../hooks/candidate.hooks";
-import { Col, Row, Statistic } from "antd";
-const { Countdown } = Statistic;
+import { Col, Row } from "antd";
+import { useGetAllElections } from './../../../../hooks/election.hooks';
 
 const Homepage = ({ user }) => {
   const {
@@ -15,9 +15,17 @@ const Homepage = ({ user }) => {
     error: voterError,
     isLoading: isVoterLoading,
   } = useGetVoter(user.id);
-  const endDate = new Date(voter?.election?.endDate);
 
-  const deadline = endDate + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
+  
+  const [endTime, setEndTime] = useState(null);
+  const { data: elections, isSuccess: isElections } = useGetAllElections();
+
+  useEffect(() => {
+    if (elections) {
+      setEndTime(new Date(elections.content[0].endDate).getTime());
+    }
+  }, [elections]);
+
 
   const {
     data: candidate,
@@ -77,11 +85,7 @@ const Homepage = ({ user }) => {
           justify={"end"}
         >
           <Col>
-            <Countdown
-              format="DD:HH:mm:ss"
-              title="The Time Left Until the End of The Election"
-              value={deadline}
-            />
+            <Timer/>
           </Col>
         </Row>
       </div>

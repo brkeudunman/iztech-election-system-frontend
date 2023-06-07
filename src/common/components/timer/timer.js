@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
-import "./timer.css";
-import { getTimeDifference } from "../../../util/get-time-difference";
-const Timer = ({ election }) => {
-  const [timeDiff, setTimeDiff] = useState({});
+import { useGetAllElections } from "../../../hooks/election.hooks";
+import { Spin, Statistic } from "antd";
+const { Countdown } = Statistic;
+const Timer = () => {
+  const [endTime, setEndTime] = useState(null);
+  const { data: elections } = useGetAllElections();
 
   useEffect(() => {
-    const startDate = new Date(election?.startDate);
-    const endDate = new Date(election?.endDate);
-    setTimeDiff(getTimeDifference(startDate, endDate));
-  }, [election]);
+    if (elections) {
+      setEndTime(new Date(elections.content[0].endDate).getTime());
+    }
+  }, [elections]);
+
   return (
-    <div className="timer">
-      <h4>The Time Left Until the End of The Election</h4>
-      <p>
-        {timeDiff.days} Days {timeDiff.hours} Hours {timeDiff.minutes} Minutes{" "}
-      </p>
-    </div>
+    <Spin spinning={!elections}>
+      <Countdown
+        format="DD:HH:mm:ss"
+        title="The Time Left Until the End of The Election"
+        value={endTime}
+      />
+    </Spin>
   );
 };
 
