@@ -1,8 +1,11 @@
 import React from "react";
-import { useGetAllCandidates } from "../../../../hooks/candidate.hooks";
-import Container from "../../../../common/components/container/container";
-import { Row, Spin, Table } from "antd";
-import { useGetElection } from "../../../../hooks/election.hooks";
+
+
+import { Spin, Table } from "antd";
+import { useGetElection } from "../../../hooks/election.hooks";
+import { useGetAllCandidates } from "../../../hooks/candidate.hooks";
+import Container from "../../../common/components/container/container";
+
 
 const Election = ({ electionId }) => {
   const { data: election, isLoading } = useGetElection(electionId);

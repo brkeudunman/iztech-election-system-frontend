@@ -2,9 +2,11 @@ import React from "react";
 import Container from "../../../../common/components/container/container";
 import Timer from "../../../../common/components/timer/timer";
 import CandidateshipCard from "../../../../common/components/cards/candidateship/candidateship-card";
-import { useAddApplication } from "../../../../hooks/application.hooks";
-import { Spin, notification } from "antd";
+
+import { Col, Statistic, Row, Spin } from "antd";
 import { useGetVoter } from "../../../../hooks/voters.hooks";
+
+const { Countdown } = Statistic;
 
 const CandidateshipPage = ({ user }) => {
   const {
@@ -12,22 +14,9 @@ const CandidateshipPage = ({ user }) => {
     error: voterError,
     isLoading: isVoterLoading,
   } = useGetVoter(user.id);
+  const endDate = new Date(voter?.election?.endDate);
 
-  console.log(user.id);
-
-  const {
-    mutate: applyCandidateship,
-    error,
-    isLoading,
-  } = useAddApplication(() => {
-    notification.success({
-      message: "Success!",
-    });
-  });
-
-  const onApply = () => {
-    applyCandidateship(user.id);
-  };
+  const deadline = endDate + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
   return (
     <Container>
@@ -40,17 +29,20 @@ const CandidateshipPage = ({ user }) => {
           justifyContent: "space-between",
         }}
       >
-        <Spin spinning={isLoading}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <CandidateshipCard onApply={onApply} />
-          </div>
+        <Spin spinning={isVoterLoading}>
+          <Row justify={"center"} align={"middle"}>
+            <Col xxl={12}>
+              <CandidateshipCard voter={voter} election={voter?.election} />
+            </Col>
+          </Row>
         </Spin>
-        <Timer election={voter?.election} />
+        <Row style={{
+          marginTop:"12px"
+        }} justify={"end"}>
+          <Col>
+            <Countdown format="DD:HH:mm:ss" title="The Time Left Until the End of The Election" value={deadline} />
+          </Col>
+        </Row>
       </div>
     </Container>
   );

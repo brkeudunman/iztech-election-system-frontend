@@ -1,9 +1,25 @@
-import { Avatar, Button, Card, Row } from "antd";
+import { Avatar, Button, Card, Row, notification } from "antd";
 import Meta from "antd/es/card/Meta";
 import "./vote-card.css";
 import React from "react";
+import { useAddVote } from "../../../../hooks/vote.hooks";
 
-const VoteCard = ({ stuInfo }) => {
+const VoteCard = ({ election, candidate }) => {
+  console.log(election)
+  const { mutate } = useAddVote(() => {
+    notification.success({
+      message: "Success!",
+      description: "Successfully voted!",
+    });
+  });
+
+  const onVote = () => {
+    mutate({
+      electionId: election?.id,
+      candidate: candidate?.id,
+    });
+  };
+
   return (
     <Card
       hoverable
@@ -21,14 +37,14 @@ const VoteCard = ({ stuInfo }) => {
       }
     >
       <Meta
-        title={stuInfo.name + " " + stuInfo.surname}
+        title={candidate.name + " " + candidate.surname}
         description={
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <Row>
-              <strong>Description: </strong> {stuInfo.description}
+              <strong>Description: </strong> {candidate.description}
             </Row>
             <Row style={{ display: "flex", flexWrap: "nowrap" }}>
-              <strong>Email: </strong> {stuInfo.email}
+              <strong>Email: </strong> {candidate.email}
             </Row>
 
             <Row
@@ -38,6 +54,7 @@ const VoteCard = ({ stuInfo }) => {
               }}
             >
               <Button
+                onClick={onVote}
                 style={{
                   width: "100%",
                 }}

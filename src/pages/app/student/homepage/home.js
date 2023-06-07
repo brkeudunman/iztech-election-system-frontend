@@ -3,9 +3,11 @@ import "./home.css";
 import studentpic from "../../../../assets/aragorn.jpg";
 import Timer from "../../../../common/components/timer/timer.js";
 import Container from "../../../../common/components/container/container";
-import { useGetVote } from "../../../../hooks/vote.hooks";
-import { useGetApplication } from "../../../../hooks/application.hooks";
+
 import { useGetVoter } from "./../../../../hooks/voters.hooks";
+import { useGetCandidate } from "../../../../hooks/candidate.hooks";
+import { Col, Row, Statistic } from "antd";
+const { Countdown } = Statistic;
 
 const Homepage = ({ user }) => {
   const {
@@ -13,18 +15,20 @@ const Homepage = ({ user }) => {
     error: voterError,
     isLoading: isVoterLoading,
   } = useGetVoter(user.id);
+  const endDate = new Date(voter?.election?.endDate);
+
+  const deadline = endDate + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
   const {
-    data: vote,
-    error: voteError,
-    isLoading: isVoteLoading,
-  } = useGetVote(user.id);
+    data: candidate,
+    error: candidateError,
+    isLoading: isCandidateLoading,
+    refetch: refetchCandidate,
+  } = useGetCandidate(voter?.id);
 
-  const {
-    data: application,
-    error: applicationError,
-    isLoading: isApplicationLoading,
-  } = useGetApplication(user.id);
+  useEffect(() => {
+    refetchCandidate();
+  }, [isVoterLoading]);
 
   return (
     <Container>
@@ -45,26 +49,36 @@ const Homepage = ({ user }) => {
               <p id="student-name">
                 <strong>{user.name + " " + user.surname}</strong>
               </p>
-              <p className="text-info">Computer Engineering</p>
-              <p className="text-info">3. Year Student</p>
+              <p className="text-info">{voter?.email}</p>
+              <p className="text-info">{voter?.description}</p>
             </div>
           </div>
 
           <div className="election-info">
             <h4 className="title">Election Information</h4>
-            {!isVoteLoading && (
-              <p>Vote Status: {voteError ? "None" : vote.status}</p>
-            )}
-            {!isApplicationLoading && (
+            {!isCandidateLoading && (
               <p>
                 Application Status:{" "}
-                {applicationError ? "None" : application.status}
+                <strong>{candidateError ? "None" : "Candidate"}</strong>
               </p>
             )}
           </div>
         </section>
-
-        <Timer election={voter?.election} />
+        <Row
+          style={{
+            marginTop: "12px",
+          }}
+          justify={"end"}
+        >
+          <Col>
+            <Countdown
+              format="DD:HH:mm:ss"
+              title="The Time Left Until the End of The Election"
+              value={deadline}
+            />
+          </Col>
+        </Row>
+       
       </div>
     </Container>
   );

@@ -62,19 +62,22 @@ export const useUpdateCandidate = (onSuccess, id) => {
   );
 };
 
-export const useGetCandidate = (onSuccess) => {
+export const useGetCandidate = (id, onSuccess) => {
   return useQuery(
     "get-candidate",
-    (id) => {
+    () => {
       return getCandidate(id);
     },
     {
       onSuccess,
       onError: (error) => {
-        notification.error({
-          description: "Error while receiving candidate",
-          message: error.message,
-        });
+        console.log(error)
+        if (error.status !== 404) {
+          notification.error({
+            description: "Error while receiving candidate",
+            message: error.message,
+          });
+        }
       },
     }
   );
