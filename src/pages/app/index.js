@@ -8,7 +8,7 @@ import CandidateshipPage from "./student/candidateship/candidateship";
 
 const AppRoutes = ({ user }) => {
   return (
-    <AppLayout>
+    <AppLayout user={user}>
       <Routes>
         <Route exact path="/app" element={<Homepage user={user} />} />
         <Route exact path="/app/calendar" element={<Homepage user={user} />} />

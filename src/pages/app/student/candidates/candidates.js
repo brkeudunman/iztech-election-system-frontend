@@ -29,12 +29,19 @@ const Candidates = () => {
       dataIndex: "email",
       key: "email",
     },
+    
     {
       title: "Election",
       dataIndex: "election",
       key: "election",
       render: (election) => <Election electionId={election.id} />,
     },
+    {
+      title:"Status",
+      dataIndex: "status",
+      key: "election",
+      render: (candidate) => <div>{candidate.application.status}</div>
+    }
   ];
 
   return (

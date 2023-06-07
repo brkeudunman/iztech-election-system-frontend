@@ -1,11 +1,9 @@
 import React from "react";
 
-
 import { Spin, Table } from "antd";
 import { useGetElection } from "../../../hooks/election.hooks";
 import { useGetAllCandidates } from "../../../hooks/candidate.hooks";
 import Container from "../../../common/components/container/container";
-
 
 const Election = ({ electionId }) => {
   const { data: election, isLoading } = useGetElection(electionId);
@@ -32,11 +30,18 @@ const Candidates = () => {
       dataIndex: "email",
       key: "email",
     },
+
     {
       title: "Election",
       dataIndex: "election",
       key: "election",
       render: (election) => <Election electionId={election.id} />,
+    },
+    {
+      title: "Status",
+      dataIndex: "application",
+      key: "application",
+      render: (application) => <div>{application.status}</div>,
     },
   ];
 

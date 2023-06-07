@@ -59,7 +59,13 @@ const Homepage = ({ user }) => {
             {!isCandidateLoading && (
               <p>
                 Application Status:{" "}
-                <strong>{candidateError ? "None" : "Candidate"}</strong>
+                <strong>
+                  {candidateError
+                    ? "None"
+                    : candidate.application.status === "NEW"
+                    ? "Pending"
+                    : candidate.application.status}
+                </strong>
               </p>
             )}
           </div>
@@ -78,7 +84,6 @@ const Homepage = ({ user }) => {
             />
           </Col>
         </Row>
-       
       </div>
     </Container>
   );

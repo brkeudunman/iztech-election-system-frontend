@@ -5,14 +5,14 @@ import { Layout } from "antd";
 import AppNavbar from "../../components/navbar/app.navbar";
 import AppHeader from "../../components/navbar/app.header";
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ user,children }) => {
   return (
     <Layout style={{
       minHeight:"100vh"
     }}>
       <AppHeader />
       <Layout>
-        <AppNavbar />
+        <AppNavbar user={user} />
         <span
           style={{
             display:"flex",

@@ -22,9 +22,10 @@ function getItem(label, key, icon, val) {
   };
 }
 
-const AppNavbar = () => {
+const AppNavbar = ({user}) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  console.log(user?.id)
 
   const items = [
     getItem("Home", "app", <HomeOutlined />),
