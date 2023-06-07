@@ -10,6 +10,7 @@ const Login = () => {
       message: "Success!",
       description: "You have successfully logged in!",
     });
+    window.location.reload();
   };
 
   const { mutate: login } = useLogin(onSuccess);

@@ -8,8 +8,10 @@ import {
   PieChartOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGetPersonnel } from "../../../hooks/personnel.hooks";
+import { useGetVoter } from "./../../../hooks/voters.hooks";
 const { Sider } = Layout;
 const { Item: MenuItem } = Menu;
 
@@ -22,17 +24,50 @@ function getItem(label, key, icon, val) {
   };
 }
 
-const AppNavbar = ({user}) => {
+const AppNavbar = ({ user }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
-  console.log(user?.id)
+  const { data: personnel,isSuccess:isPersonnelSuccess } = useGetPersonnel(user.id);
+  const { data: student } = useGetVoter(user.id);
+
+  const [startTime, setStartTime] = useState(null);
+  const [isStarted, setIsStarted] = useState(false);
+  console.log(personnel);
+  useEffect(() => {
+    if (student) {
+      setStartTime(new Date(student.election.startDate).getTime());
+    }
+  }, [personnel, student]);
+
+  useEffect(() => {
+    if (startTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > startTime) {
+        setIsStarted(true);
+        console.log("Election has started");
+      } else {
+        setIsStarted(false);
+        console.log("Election has not started yet");
+      }
+    }
+  }, [startTime]);
 
   const items = [
     getItem("Home", "app", <HomeOutlined />),
-    getItem("Vote", "app/vote", <CheckOutlined />),
-    getItem("Candidateship", "app/candidateship", <PaperClipOutlined />),
-    getItem("Results", "app/results", <PieChartOutlined />, true),
-    getItem("Calendar", "app/calendar", <CalendarOutlined />, true),
+    getItem("Vote", "app/vote", <CheckOutlined />, !isStarted),
+    getItem(
+      "Candidateship",
+      "app/candidateship",
+      <PaperClipOutlined />,
+      isStarted || !student
+    ),
+    getItem("Results", "app/results", <PieChartOutlined />, isStarted),
+    getItem(
+      "Calendar",
+      "app/calendar",
+      <CalendarOutlined />,
+      !personnel && personnel?.personnelRole !== "RECTOR"
+    ),
     getItem("Candidates", "app/candidates", <TeamOutlined />),
     getItem("User Guide", "app/user-guide", <BookOutlined />, true),
   ];

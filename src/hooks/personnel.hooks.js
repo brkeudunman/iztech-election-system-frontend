@@ -17,10 +17,12 @@ export const useGetPersonnel = (id, onSuccess) => {
     {
       onSuccess,
       onError: (error) => {
-        notification.error({
-          description: "Error while receiving personnel",
-          message: error.message,
-        });
+        if (error.status !== 404) {
+          notification.error({
+            description: "Error while receiving personnel",
+            message: error.message,
+          });
+        }
       },
     }
   );

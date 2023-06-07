@@ -16,10 +16,12 @@ export const useGetVoter = (id, onSuccess) => {
     {
       onSuccess,
       onError: (error) => {
-        notification.error({
-          description: "Error while receiving voter",
-          message: error.message,
-        });
+        if (error.status !== 404) {
+          notification.error({
+            description: "Error while receiving voter",
+            message: error.message,
+          });
+        }
       },
     }
   );
