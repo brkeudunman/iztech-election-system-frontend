@@ -1,11 +1,11 @@
-import { Avatar, Button, Card, Row, notification } from "antd";
+import { Button, Card, Row, notification } from "antd";
 import Meta from "antd/es/card/Meta";
 import "./vote-card.css";
 import React from "react";
 import { useAddVote } from "../../../../hooks/vote.hooks";
 
 const VoteCard = ({ election, candidate }) => {
-  console.log(election)
+
   const { mutate } = useAddVote(() => {
     notification.success({
       message: "Success!",
@@ -25,8 +25,8 @@ const VoteCard = ({ election, candidate }) => {
       hoverable
       style={{
         width: 240,
-        backgroundColor: "azure",
       }}
+      bordered
       cover={
         <img
           width={40}
