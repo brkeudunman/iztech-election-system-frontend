@@ -8,6 +8,7 @@ import {
   PieChartOutlined,
   TeamOutlined,
   InsertRowAboveOutlined,
+  CoffeeOutlined
 } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -69,7 +70,7 @@ const AppNavbar = ({ user }) => {
       "Vote",
       "app/vote",
       <CheckOutlined />,
-      !isStarted || !student || !compareNowWithEndDate //todo !'i sil 
+      !isStarted || !student || !compareNowWithEndDate //todo !'i sil
     ),
     getItem(
       "Candidateship",
@@ -87,15 +88,16 @@ const AppNavbar = ({ user }) => {
       "Calendar",
       "app/calendar",
       <CalendarOutlined />,
-      !personnel && personnel?.personnelRole !== "RECTOR"
+      personnel?.personnelRole !== "RECTOR"
     ),
-    getItem(
-      "Staff List",
-      "app/staff",
-      <InsertRowAboveOutlined />,
-      !personnel
-    ),
+    getItem("Staff List", "app/staff", <InsertRowAboveOutlined />, !personnel),
     getItem("Candidates", "app/candidates", <TeamOutlined />),
+    getItem(
+      "Secretary",
+      "app/secretary",
+      <CoffeeOutlined />,
+      (!personnel || personnel?.personnelRole === "DEPARTMENT_SECRETARY")
+    ),
     getItem("User Guide", "app/user-guide", <BookOutlined />, true),
   ];
 
