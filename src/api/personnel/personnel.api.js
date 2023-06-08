@@ -5,3 +5,4 @@ export const getPersonnel = (id) => get(`/personnel/${id}`);
 export const addPersonnel = (data) => post(`/personnel`, data);
 export const updatePersonnel = (id, data) => put(`/personnel/${id}`, data);
 export const deletePersonnel = (id) => del(`/personnel/${id}`);
+export const getPersonnelTypes = () => get("/personnel/roles")

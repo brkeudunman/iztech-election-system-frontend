@@ -4,6 +4,7 @@ import {
   deletePersonnel,
   getAllPersonnels,
   getPersonnel,
+  getPersonnelTypes,
   updatePersonnel,
 } from "../api/personnel/personnel.api";
 import { useMutation, useQuery } from "react-query";
@@ -39,6 +40,24 @@ export const useGetPersonnels = (onSuccess) => {
       onError: (error) => {
         notification.error({
           description: "Error while receiving all personnels",
+          message: error.message,
+        });
+      },
+    }
+  );
+};
+
+export const useGetPersonnelTypes = (onSuccess) => {
+  return useQuery(
+    "get-all-types",
+    () => {
+      return getPersonnelTypes();
+    },
+    {
+      onSuccess,
+      onError: (error) => {
+        notification.error({
+          description: "Error while receiving personnel types",
           message: error.message,
         });
       },

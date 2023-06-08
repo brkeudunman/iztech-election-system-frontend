@@ -70,7 +70,7 @@ const AppNavbar = ({ user }) => {
       "Vote",
       "app/vote",
       <CheckOutlined />,
-      !isStarted || !student || !compareNowWithEndDate //todo !'i sil
+      !isStarted || !student || !compareNowWithEndDate 
     ),
     getItem(
       "Candidateship",
@@ -93,10 +93,10 @@ const AppNavbar = ({ user }) => {
     getItem("Staff List", "app/staff", <InsertRowAboveOutlined />, !personnel),
     getItem("Candidates", "app/candidates", <TeamOutlined />),
     getItem(
-      "Secretary",
-      "app/secretary",
+      "Assign Personnel",
+      "app/assign-personnel",
       <CoffeeOutlined />,
-      (!personnel || personnel?.personnelRole === "DEPARTMENT_SECRETARY")
+      (!personnel)
     ),
     getItem("User Guide", "app/user-guide", <BookOutlined />, true),
   ];

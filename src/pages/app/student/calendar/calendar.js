@@ -21,12 +21,10 @@ const Calendar = ({ user }) => {
   const { data: personnel } = useGetPersonnel(user?.id);
 
   const onSuccess = () => {
-    if (isSuccess) {
-      notification.success({
-        message: "Success!",
-        description: "Election date has been successfully sent",
-      });
-    }
+    notification.success({
+      message: "Success!",
+      description: "Election date has been successfully sent",
+    });
   };
 
   const onFinish = (values) => {
@@ -59,7 +57,7 @@ const Calendar = ({ user }) => {
             <Col span={24}>
               <Title level={4}>Set The Election Calendar</Title>
               <hr />
-              <br/>
+              <br />
               <Form onFinish={onFinish}>
                 <Form.Item
                   rules={[
