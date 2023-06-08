@@ -3,6 +3,7 @@ import React from "react";
 import "./login.css";
 import { useLogin } from "../../../hooks/auth.hooks";
 import LoginFormView from "../../../common/view/login/login-form-view";
+import Title from "antd/es/typography/Title";
 
 const Login = () => {
   const onSuccess = () => {
@@ -38,9 +39,16 @@ const Login = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <div className="form-title">Iztech Election System</div>
+          <Title
+            style={{
+              textAlign: "center",
+            }}
+            level={4}
+          >
+            Iztech Election System
+          </Title>
+          <hr />
           <LoginFormView />
-          
         </Form>
       </Col>
     </Row>

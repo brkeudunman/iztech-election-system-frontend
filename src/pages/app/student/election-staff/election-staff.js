@@ -1,10 +1,9 @@
 import React from "react";
-import { useGetAllCandidates } from "../../../../hooks/candidate.hooks";
 import Container from "../../../../common/components/container/container";
-import { Spin, Table } from "antd";
-import { useGetElection } from "../../../../hooks/election.hooks";
+import {Table } from "antd";
 import Title from "antd/es/typography/Title";
 import { useGetPersonnels } from "../../../../hooks/personnel.hooks";
+import { stringManipulator } from "../../../../util/manipulate-string";
 
 const ElectionStaff = () => {
   const { data: personnels } = useGetPersonnels();
@@ -25,19 +24,35 @@ const ElectionStaff = () => {
       dataIndex: "email",
       key: "email",
     },
-    
-    
+    {
+      title: "Personnel Role",
+      dataIndex: "personnelRole",
+      key: "personnelRole",
+      render: (personnelRole) => (
+        <span>
+          {stringManipulator(personnelRole)}
+        </span>
+      ),
+    },
+    {
+      title: "User Role",
+      dataIndex: "userRole",
+      key: "userRole",
+      render: (userRole) => (
+        <span>
+          {stringManipulator(userRole)}
+        </span>
+      )
+    },
   ];
 
   return (
     <Container>
-        {
-            
-        }
+      {}
       <div style={{ width: "100%" }}>
-      <Title level={4}>Election Staff</Title>
-          <hr></hr>
-          <br></br>
+        <Title level={4}>Election Staff</Title>
+        <hr></hr>
+        <br></br>
         <Table dataSource={personnels?.content} columns={columns} />
       </div>
     </Container>

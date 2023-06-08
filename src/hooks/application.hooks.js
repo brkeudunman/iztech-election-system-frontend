@@ -1,4 +1,5 @@
 import { notification } from "antd";
+
 import {
   addApplication,
   deleteApplication,
@@ -44,13 +45,14 @@ export const useDeleteApplication = (onSuccess, id) => {
   );
 };
 
-export const useUpdateApplication = (id) => {
+export const useUpdateApplication = (onSuccess, id) => {
   return useMutation(
     "update-application",
     (data) => {
       return updateApplication(id, data);
     },
     {
+      onSuccess,
       onError: (error) => {
         notification.error({
           description: "Error while updating application",

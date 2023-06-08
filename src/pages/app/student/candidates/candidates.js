@@ -4,6 +4,7 @@ import Container from "../../../../common/components/container/container";
 import { Spin, Table } from "antd";
 import { useGetElection } from "../../../../hooks/election.hooks";
 import Title from "antd/es/typography/Title";
+import { stringManipulator } from "../../../../util/manipulate-string";
 
 const Election = ({ electionId }) => {
   const { data: election, isLoading } = useGetElection(electionId);
@@ -30,7 +31,7 @@ const Candidates = () => {
       dataIndex: "email",
       key: "email",
     },
-    
+
     {
       title: "Election",
       dataIndex: "election",
@@ -38,19 +39,21 @@ const Candidates = () => {
       render: (election) => <Election electionId={election.id} />,
     },
     {
-      title:"Status",
+      title: "Status",
       dataIndex: "application",
       key: "application",
-      render: (application) => <div>{application.status}</div>
-    }
+      render: (application) => (
+        <div>{stringManipulator(application.status)}</div>
+      ),
+    },
   ];
 
   return (
     <Container>
       <div style={{ width: "100%" }}>
-      <Title level={4}>Candidates</Title>
-          <hr></hr>
-          <br></br>
+        <Title level={4}>Candidates</Title>
+        <hr></hr>
+        <br></br>
         <Table dataSource={candidates?.content} columns={columns} />
       </div>
     </Container>

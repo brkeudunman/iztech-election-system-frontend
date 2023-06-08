@@ -25,14 +25,15 @@ const ConfirmCell = ({
   buttonTitle,
   danger,
 }) => {
-  const { mutate: updateCandidate } = useUpdateApplication(candidateId);
+  const { mutate: updateCandidate } = useUpdateApplication(() => {
+    refetch();
+  }, candidateId);
 
   const confirm = () => {
     updateCandidate({
       status: approvement,
     });
     message.success("The candidate's application has updated.");
-    refetch();
   };
 
   return (
@@ -59,15 +60,8 @@ const ViewCoverLetter = ({ user }) => {
   const {
     data: candidates,
     refetch,
-    isFetching,
-    isLoading,
+    isRefetching,
   } = useGetAllCandidates();
-
-  useEffect(() => {
-    if (!isLoading) {
-      refetch();
-    }
-  }, [isFetching]);
 
   const columns = [
     {
@@ -137,7 +131,7 @@ const ViewCoverLetter = ({ user }) => {
         <Title level={4}>View Cover Letters</Title>
         <hr></hr>
         <br></br>
-        <Spin spinning={isLoading}>
+        <Spin spinning={isRefetching}>
           <Table dataSource={candidates?.content} columns={columns} />
         </Spin>
       </div>
