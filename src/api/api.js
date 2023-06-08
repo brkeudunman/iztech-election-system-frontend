@@ -1,15 +1,13 @@
 import axios from "axios";
 import getToken from "../util/get-token";
+const { REACT_APP_API_URL } = process.env;
 
-const config = {
-    apiUrl:process.env.REACT_APP_API_URL
-}
 
 export const get = async (location) => {
   const token = getToken();
   return axios
     .get(
-      `${config.apiUrl}${location}`,
+      `${REACT_APP_API_URL}${location}`,
       token
         ? {
             headers: { Authorization: `Bearer ${token}` },
@@ -26,7 +24,7 @@ export const post = async (location, body) => {
   const token = getToken();
   return axios
     .post(
-      `${config.apiUrl}${location}`,
+      `${REACT_APP_API_URL}${location}`,
       body,
       token
         ? {
@@ -44,7 +42,7 @@ export const put = async (location, body) => {
   const token = getToken();
   return axios
     .put(
-      `${config.apiUrl}${location}`,
+      `${REACT_APP_API_URL}${location}`,
       body,
       token
         ? {
@@ -62,7 +60,7 @@ export const del = async (location) => {
   const token = getToken();
   return axios
     .delete(
-      `${config.apiUrl}${location}`,
+      `${REACT_APP_API_URL}${location}`,
       token
         ? {
             headers: { Authorization: `Bearer ${token}` },
