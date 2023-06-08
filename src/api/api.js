@@ -39,7 +39,10 @@ export const getMail = async (location, subject, receiver) => {
       return response;
     })
     .catch((error) => {
-      throw error.response ? error.response.data : error;
+      notification.error({
+        message: "Failure!",
+        description: error.response?.data.message,
+      });
     });
 };
 
