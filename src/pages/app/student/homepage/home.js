@@ -7,6 +7,7 @@ import Container from "../../../../common/components/container/container";
 import { useGetVoter } from "./../../../../hooks/voters.hooks";
 import { useGetCandidate } from "../../../../hooks/candidate.hooks";
 import { Col, Row } from "antd";
+import { useGetPersonnel } from "../../../../hooks/personnel.hooks";
 
 const Homepage = ({ user }) => {
   const {
@@ -14,6 +15,12 @@ const Homepage = ({ user }) => {
     error: voterError,
     isLoading: isVoterLoading,
   } = useGetVoter(user.id);
+
+  const {
+    data: personnel,
+    error: personnelError,
+    isLoading: isPersonnelLoading,
+  } = useGetPersonnel(user?.id);
 
   const {
     data: candidate,
@@ -45,8 +52,37 @@ const Homepage = ({ user }) => {
               <p id="student-name">
                 <strong>{user.name + " " + user.surname}</strong>
               </p>
-              <p className="text-info">{voter?.email}</p>
-              <p className="text-info">{voter?.description}</p>
+
+              <span>
+                <strong>Email:</strong>{" "}
+                <p className="text-info">{voter?.email}</p>
+              </span>
+              <br />
+              <span>
+                <strong>Department:</strong>{" "}
+                <p className="text-info">
+                  {voter?.election?.organization?.name}
+                </p>
+              </span>
+
+              <p
+                style={{
+                  fontSize: "14px",
+                }}
+                className="text-info"
+              >
+                {personnel?.personnelRole}
+              </p>
+              <p
+                style={{
+                  fontSize: "14px",
+                }}
+                className="text-info"
+              >
+                {personnel?.userRole}
+              </p>
+              <br />
+              <p className="text-info">{personnel?.email}</p>
             </div>
           </div>
 

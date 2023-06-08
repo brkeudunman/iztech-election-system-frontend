@@ -96,7 +96,7 @@ const AppNavbar = ({ user }) => {
       "Assign Personnel",
       "app/assign-personnel",
       <CoffeeOutlined />,
-      (!personnel)
+      (!personnel || personnel?.userRole !== "ADMIN")
     ),
     getItem("User Guide", "app/user-guide", <BookOutlined />, true),
   ];
