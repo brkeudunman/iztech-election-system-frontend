@@ -17,6 +17,7 @@ import { useUpdateApplication } from "./../../../../hooks/application.hooks";
 import { useEffect } from "react";
 import { useGetVoter } from "../../../../hooks/voters.hooks";
 import Unauthorized from "../unauthorized/unauthorized";
+import { useGetCoverLetter } from "../../../../hooks/file.hooks";
 
 const ConfirmCell = ({
   refetch,
@@ -55,13 +56,13 @@ const Election = ({ electionId }) => {
   return <Spin spinning={isLoading}>{election?.organization?.name}</Spin>;
 };
 
+const CoverLetterCell = ({ path }) => {
+  return <a target="_blank" href={`${path}`} rel="noreferrer">{path}</a>;
+};
+
 const ViewCoverLetter = ({ user }) => {
   const { error } = useGetVoter(user.id);
-  const {
-    data: candidates,
-    refetch,
-    isRefetching,
-  } = useGetAllCandidates();
+  const { data: candidates, refetch, isRefetching } = useGetAllCandidates();
 
   const columns = [
     {
@@ -95,7 +96,7 @@ const ViewCoverLetter = ({ user }) => {
     {
       title: "Cover Letter",
       dataIndex: "coverLetter",
-      render: (coverLetter) => <div>Cover Letter</div>,
+      render: (coverLetter) => <CoverLetterCell path={coverLetter?.path} />,
     },
     {
       title: "Application",
