@@ -11,14 +11,11 @@ import { useGetPersonnel } from "../../../../hooks/personnel.hooks";
 const Homepage = ({ user }) => {
   const {
     data: voter,
-    error: voterError,
     isLoading: isVoterLoading,
   } = useGetVoter(user.id);
 
   const {
     data: personnel,
-    error: personnelError,
-    isLoading: isPersonnelLoading,
   } = useGetPersonnel(user?.id);
 
   const {
@@ -101,6 +98,13 @@ const Homepage = ({ user }) => {
                 </p>
               </>
             )}
+            {
+              personnel && (
+                <>
+                  <a href="/app/send-mail">Send Announcement Mails</a>
+                </>
+              )
+            }
           </div>
         </section>
         <Row

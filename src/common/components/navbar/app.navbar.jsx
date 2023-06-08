@@ -9,7 +9,8 @@ import {
   TeamOutlined,
   InsertRowAboveOutlined,
   CoffeeOutlined,
-  CopyOutlined
+  CopyOutlined,
+  MailOutlined,
 } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +73,7 @@ const AppNavbar = ({ user }) => {
       "Vote",
       "app/vote",
       <CheckOutlined />,
-      !isStarted || !student || !compareNowWithEndDate 
+      !isStarted || !student || !compareNowWithEndDate
     ),
     getItem(
       "Candidateship",
@@ -94,15 +95,20 @@ const AppNavbar = ({ user }) => {
     ),
     getItem("Staff List", "app/staff", <InsertRowAboveOutlined />, !personnel),
     getItem("Candidates", "app/candidates", <TeamOutlined />),
-    getItem("View Cover Letters", "app/view-cover-letter", <CopyOutlined />, (!personnel && personnel?.userRole !== "ADMIN")),  
+    getItem(
+      "View Cover Letters",
+      "app/view-cover-letter",
+      <CopyOutlined />,
+      !personnel && personnel?.userRole !== "ADMIN"
+    ),
     getItem(
       "Assign Personnel",
       "app/assign-personnel",
       <CoffeeOutlined />,
-      (!personnel || personnel?.userRole !== "ADMIN")
+      !personnel || personnel?.userRole !== "ADMIN"
     ),
-    
-    getItem("User Guide", "app/user-guide", <BookOutlined />, true),
+
+    getItem("Send Mail", "app/send-mail", <MailOutlined />, !personnel),
   ];
 
   return (

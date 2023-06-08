@@ -10,6 +10,7 @@ import Results from "./student/results/results";
 import ElectionStaff from "./student/election-staff/election-staff";
 import AssignPersonelPage from "./student/assign-personnel/assign-personnel";
 import ViewCoverLetter from "./student/view-cover-letter/view-cover-letter";
+import SendMail from "./student/send-mail/send-mail";
 
 const AppRoutes = ({ user }) => {
   return (
@@ -28,6 +29,7 @@ const AppRoutes = ({ user }) => {
         <Route exact path="/app/assign-personnel" element={<AssignPersonelPage user={user} />} />
         <Route exact path="/app/view-cover-letter" element={<ViewCoverLetter user={user}/>}/>
         <Route exact path="/app/vote" element={<VotePage user={user} />} />
+        <Route exact path="/app/send-mail" element={<SendMail user={user} />} />
         <Route exact path="*" element={<Navigate to={"/app"} />} />
       </Routes>
     </AppLayout>
