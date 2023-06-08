@@ -8,13 +8,15 @@ import {
   PieChartOutlined,
   TeamOutlined,
   InsertRowAboveOutlined,
-  CoffeeOutlined
+  CoffeeOutlined,
+  CopyOutlined
 } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetPersonnel } from "../../../hooks/personnel.hooks";
 import { useGetVoter } from "./../../../hooks/voters.hooks";
 import { useGetAllElections } from "../../../hooks/election.hooks";
+
 const { Sider } = Layout;
 const { Item: MenuItem } = Menu;
 
@@ -92,12 +94,14 @@ const AppNavbar = ({ user }) => {
     ),
     getItem("Staff List", "app/staff", <InsertRowAboveOutlined />, !personnel),
     getItem("Candidates", "app/candidates", <TeamOutlined />),
+    getItem("View Cover Letters", "app/view-cover-letter", <CopyOutlined />, (!personnel && personnel?.userRole !== "ADMIN")),  
     getItem(
       "Assign Personnel",
       "app/assign-personnel",
       <CoffeeOutlined />,
       (!personnel || personnel?.userRole !== "ADMIN")
     ),
+    
     getItem("User Guide", "app/user-guide", <BookOutlined />, true),
   ];
 

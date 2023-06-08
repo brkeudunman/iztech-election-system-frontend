@@ -15,6 +15,7 @@ import Title from "antd/es/typography/Title";
 import { useAddElectionDate } from "../../../../hooks/election-date.hooks";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import Unauthorized from "../unauthorized/unauthorized";
 dayjs.extend(customParseFormat);
 
 const Calendar = ({ user }) => {
@@ -40,77 +41,76 @@ const Calendar = ({ user }) => {
 
   const { mutate, isLoading, isSuccess } = useAddElectionDate(onSuccess);
 
-  return (
-    personnel &&
-    personnel.personnelRole === "RECTOR" && (
-      <Container>
+  return personnel && personnel.personnelRole === "RECTOR" ? (
+    <Container>
+      <Row
+        style={{
+          width: "100%",
+        }}
+      >
         <Row
           style={{
             width: "100%",
           }}
         >
-          <Row
-            style={{
-              width: "100%",
-            }}
-          >
-            <Col span={24}>
-              <Title level={4}>Set The Election Calendar</Title>
-              <hr />
-              <br />
-              <Form onFinish={onFinish}>
-                <Form.Item
-                  rules={[
-                    {
-                      required: "true",
-                    },
-                  ]}
-                  label="Start Date"
-                  name={"startDate"}
-                >
-                  <DatePicker
-                    format="DD-MM-YYYY HH:mm:ss"
-                    showTime={{
-                      defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item
-                  rules={[
-                    {
-                      required: "true",
-                    },
-                  ]}
-                  label="End Date"
-                  name={"endDate"}
-                >
-                  <DatePicker
-                    format="DD-MM-YYYY HH:mm:ss"
-                    showTime={{
-                      defaultValue: dayjs("00:00:00", "HH:mm:ss"),
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name={"round"}
-                  rules={[
-                    {
-                      required: "true",
-                    },
-                  ]}
-                  label="Round Number"
-                >
-                  <InputNumber max={3} min={1} />
-                </Form.Item>
-                <Form.Item>
-                  <Button htmlType="submit">Submit</Button>
-                </Form.Item>
-              </Form>
-            </Col>
-          </Row>
+          <Col span={24}>
+            <Title level={4}>Set The Election Calendar</Title>
+            <hr />
+            <br />
+            <Form onFinish={onFinish}>
+              <Form.Item
+                rules={[
+                  {
+                    required: "true",
+                  },
+                ]}
+                label="Start Date"
+                name={"startDate"}
+              >
+                <DatePicker
+                  format="DD-MM-YYYY HH:mm:ss"
+                  showTime={{
+                    defaultValue: dayjs("00:00:00", "HH:mm:ss"),
+                  }}
+                />
+              </Form.Item>
+              <Form.Item
+                rules={[
+                  {
+                    required: "true",
+                  },
+                ]}
+                label="End Date"
+                name={"endDate"}
+              >
+                <DatePicker
+                  format="DD-MM-YYYY HH:mm:ss"
+                  showTime={{
+                    defaultValue: dayjs("00:00:00", "HH:mm:ss"),
+                  }}
+                />
+              </Form.Item>
+              <Form.Item
+                name={"round"}
+                rules={[
+                  {
+                    required: "true",
+                  },
+                ]}
+                label="Round Number"
+              >
+                <InputNumber max={3} min={1} />
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit">Submit</Button>
+              </Form.Item>
+            </Form>
+          </Col>
         </Row>
-      </Container>
-    )
+      </Row>
+    </Container>
+  ) : (
+    <Unauthorized />
   );
 };
 

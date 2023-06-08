@@ -17,8 +17,11 @@ import {
   useAddPersonnel,
   useGetPersonnelTypes,
 } from "../../../../hooks/personnel.hooks";
+import { useGetVoter } from "../../../../hooks/voters.hooks";
+import Unauthorized from "../unauthorized/unauthorized";
 
-const AssignPersonelPage = () => {
+const AssignPersonelPage = ({ user }) => {
+  const { error } = useGetVoter(user.id);
   const [options, setOptions] = useState([]);
   const { data, isLoading } = useGetPersonnelTypes();
   const [form] = useForm();
@@ -57,7 +60,7 @@ const AssignPersonelPage = () => {
     mutate(x);
   };
 
-  return (
+  return error ? (
     <Container>
       <Row
         style={{
@@ -155,6 +158,8 @@ const AssignPersonelPage = () => {
         </Col>
       </Row>
     </Container>
+  ) : (
+    <Unauthorized />
   );
 };
 

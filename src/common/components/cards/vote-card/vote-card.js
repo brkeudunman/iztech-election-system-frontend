@@ -32,7 +32,7 @@ const VoteCard = ({ election, candidate }) => {
           width={40}
           height={240}
           alt="example"
-          src="https://picsum.photos/200/300"
+          src="https://www.hatayvatan.com/wp-content/uploads/2017/04/1446864_620x410.jpg"
         />
       }
     >

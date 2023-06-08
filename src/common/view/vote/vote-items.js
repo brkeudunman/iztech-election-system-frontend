@@ -1,8 +1,6 @@
 import React from "react";
 import VoteCard from "../../components/cards/vote-card/vote-card";
 import "./vote-items.css";
-import { useAddVote } from "./../../../hooks/vote.hooks";
-import { notification } from "antd";
 import { useGetVoter } from "../../../hooks/voters.hooks";
 
 const VoteCards = ({ candidates }) => {

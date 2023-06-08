@@ -44,23 +44,22 @@ export const useDeleteApplication = (onSuccess, id) => {
   );
 };
 
-export const useUpdateApplication = (onSuccess, id) => {
-    return useMutation(
-      "update-application",
-      (data) => {
-        return updateApplication(id, data);
+export const useUpdateApplication = (id) => {
+  return useMutation(
+    "update-application",
+    (data) => {
+      return updateApplication(id, data);
+    },
+    {
+      onError: (error) => {
+        notification.error({
+          description: "Error while updating application",
+          message: error.message,
+        });
       },
-      {
-        onSuccess,
-        onError: (error) => {
-          notification.error({
-            description: "Error while updating application",
-            message: error.message,
-          });
-        },
-      }
-    );
-  };
+    }
+  );
+};
 
 export const useGetApplication = (id, onSuccess, onError) => {
   return useQuery(
@@ -70,7 +69,7 @@ export const useGetApplication = (id, onSuccess, onError) => {
     },
     {
       onSuccess,
-      onError
+      onError,
     }
   );
 };

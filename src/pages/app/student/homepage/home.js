@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./home.css";
-import studentpic from "../../../../assets/aragorn.jpg";
 import Timer from "../../../../common/components/timer/timer.js";
 import Container from "../../../../common/components/container/container";
 
@@ -47,7 +46,7 @@ const Homepage = ({ user }) => {
           <h2 className="title2">Welcome, {user.name + " " + user.surname}</h2>
           <h4 className="title">User Information</h4>
           <div className="info-profile">
-            <img src={studentpic} alt="" />
+            <img src={"https://www.hatayvatan.com/wp-content/uploads/2017/04/1446864_620x410.jpg"} alt="" />
             <div className="info-text">
               <p id="student-name">
                 <strong>{user.name + " " + user.surname}</strong>
