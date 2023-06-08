@@ -8,7 +8,7 @@ import Title from "antd/es/typography/Title";
 const Election = ({ electionId }) => {
   const { data: election, isLoading } = useGetElection(electionId);
 
-  return <Spin spinning={isLoading}>{election?.organization.name}</Spin>;
+  return <Spin spinning={isLoading}>{election?.organization?.name}</Spin>;
 };
 
 const Candidates = () => {

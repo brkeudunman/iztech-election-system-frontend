@@ -2,29 +2,31 @@ import { Col, Row, Table } from "antd";
 import React from "react";
 import Container from "../../../../common/components/container/container";
 import Title from "antd/es/typography/Title";
+import { useGetElectionResult } from "../../../../hooks/election-result.hook";
 
 const Results = () => {
+  const { data, isLoading } = useGetElectionResult();
+  console.log(data?.content);
   const columns = [
     {
       title: "Name",
-      dataIndex: "firstName",
       key: "firstName",
+      render: (element) => <div>{element.candidate?.name}</div>,
     },
     {
       title: "Surname",
-      dataIndex: "lastName",
       key: "lastName",
+      render: (element) => <div>{element.candidate?.surname}</div>,
     },
     {
       title: "Email",
-      dataIndex: "email",
       key: "email",
+      render: (element) => <div>{element.candidate.email}</div>,
     },
     {
       title: "Vote Count",
-      dataIndex: "voteCount",
       key: "voteCount",
-      render: (voteCount) => <div>{voteCount}</div>,
+      render: (element) => <div>{element.voteCount}</div>,
       defaultSortOrder: "descend",
       sorter: (a, b) => a.voteCount - b.voteCount,
     },
@@ -41,7 +43,7 @@ const Results = () => {
           <Title level={4}>Result</Title>
           <hr></hr>
           <br></br>
-          <Table columns={columns}></Table>
+          <Table dataSource={data?.content} columns={columns}></Table>
         </Col>
       </Row>
     </Container>
