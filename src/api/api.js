@@ -2,7 +2,7 @@ import axios from "axios";
 import getToken from "../util/get-token";
 
 const config = {
-    apiUrl:'http://localhost:8080'
+    apiUrl:process.env.REACT_APP_API_URL
 }
 
 export const get = async (location) => {
