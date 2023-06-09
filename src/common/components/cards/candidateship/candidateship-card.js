@@ -72,7 +72,12 @@ const CandidateshipCard = ({ voter, election }) => {
         <Spin spinning={!voter}>
           <Row align={"middle"} justify={"center"}>
             <Col>
-              <Image src={aragornImg} alt="Aragorn" />
+              <Image
+                src={
+                  "https://www.hatayvatan.com/wp-content/uploads/2017/04/1446864_620x410.jpg"
+                }
+                alt="Aragorn"
+              />
 
               <div style={{ marginTop: "24px" }}>
                 <Descriptions bordered column={2}>

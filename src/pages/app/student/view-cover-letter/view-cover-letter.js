@@ -1,23 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../../../../common/components/container/container";
 import { useGetAllCandidates } from "../../../../hooks/candidate.hooks";
 import { useGetElection } from "../../../../hooks/election.hooks";
-import {
-  Button,
-  Col,
-  Popconfirm,
-  Result,
-  Row,
-  Spin,
-  Table,
-  message,
-} from "antd";
+import { Button, Image, Popconfirm, Spin, Table, message } from "antd";
 import Title from "antd/es/typography/Title";
 import { useUpdateApplication } from "./../../../../hooks/application.hooks";
-import { useEffect } from "react";
 import { useGetVoter } from "../../../../hooks/voters.hooks";
 import Unauthorized from "../unauthorized/unauthorized";
-import { useGetCoverLetter } from "../../../../hooks/file.hooks";
+import { getFile } from "../../../../api/file/file.api";
+import { useEffect } from "react";
+import { useDownloadFile } from "../../../../hooks/file.hooks";
 
 const ConfirmCell = ({
   refetch,
@@ -56,8 +48,46 @@ const Election = ({ electionId }) => {
   return <Spin spinning={isLoading}>{election?.organization?.name}</Spin>;
 };
 
-const CoverLetterCell = ({ path }) => {
-  return <a target="_blank" href={`${path}`} rel="noreferrer">{path}</a>;
+const CoverLetterCell = ({ id }) => {
+  const [visible, setVisible] = useState(false);
+  const [scaleStep, setScaleStep] = useState(0.5);
+  const [fileData, setFileData] = useState(null); // State to store the file data
+
+  const { mutate: downloadImage, isError } = useDownloadFile();
+
+  useEffect(() => {
+    downloadImage(id, {
+      onSuccess: (response) => {
+        let blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        let bufferObject = window.URL.createObjectURL(blob);
+        setFileData(bufferObject);
+      },
+    });
+  }, []);
+  return (
+    <>
+      <br />
+      <Button type="primary" onClick={() => setVisible(true)}>
+        Show Cover Letter
+      </Button>
+      {fileData !== null &&
+        fileData.length > 0 && ( // Check if fileData is not null and has a length
+          <Image
+            style={{ display: "none" }}
+            preview={{
+              visible,
+              scaleStep,
+              src: fileData,
+              onVisibleChange: (value) => {
+                setVisible(value);
+              },
+            }}
+          />
+        )}
+    </>
+  );
 };
 
 const ViewCoverLetter = ({ user }) => {
@@ -96,7 +126,7 @@ const ViewCoverLetter = ({ user }) => {
     {
       title: "Cover Letter",
       dataIndex: "coverLetter",
-      render: (coverLetter) => <CoverLetterCell path={coverLetter?.path} />,
+      render: (coverLetter) => <CoverLetterCell id={coverLetter?.id} />,
     },
     {
       title: "Application",

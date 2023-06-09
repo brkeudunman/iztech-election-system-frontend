@@ -98,3 +98,16 @@ export const del = async (location) => {
       throw error.response ? error.response.data : error;
     });
 };
+
+export const download = async (location) => {
+  return axios
+    .get(`${REACT_APP_API_URL}${location}`, {
+      responseType: "arraybuffer",
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw error.response ? error.response.data : error;
+    });
+};

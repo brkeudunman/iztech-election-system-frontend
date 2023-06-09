@@ -16,7 +16,11 @@ import {
 import { useGetPersonnel } from "../../../../hooks/personnel.hooks";
 import Title from "antd/es/typography/Title";
 import { useForm } from "antd/es/form/Form";
-import { sendAnnoucementMail, sendApplicationStatus, sendCandidatesMail } from "../../../../api/mail/mail";
+import {
+  sendAnnoucementMail,
+  sendApplicationStatus,
+  sendCandidatesMail,
+} from "../../../../api/mail/mail";
 
 const SendMail = ({ user }) => {
   const { isLoading, error } = useGetPersonnel(user?.id);
@@ -25,15 +29,12 @@ const SendMail = ({ user }) => {
   const onFinish = (values) => {
     if (values.announcementType === "election") {
       sendAnnoucementMail(values.subject, values.receiver);
-      
+    } else if (values.announcementType === "applications") {
+      sendApplicationStatus(values.subject, values.receiver);
+    } else if (values.announcementType === "candidates") {
+      sendCandidatesMail(values.subject, values.receiver);
     }
-    else if (values.announcementType === "applications"){
-      sendApplicationStatus(values.subject,values.receiver)
-    }
-    else if (values.announcementType === "candidates"){
-      sendCandidatesMail(values.subject,values.receiver)
-    }
-    message.loading("Announcement is sending please wait.")
+    message.loading("Announcement is sending please wait.");
   };
   return !error ? (
     <Container>

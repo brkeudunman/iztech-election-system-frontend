@@ -1,13 +1,13 @@
-import { get, post } from "../api";
+import { download, get, post } from "../api";
 
-export const getFile = (id) => {
-  get(`/file/${id}`);
+export const downloadFile = (id) => {
+  return download(`/file/${id}`);
 };
 
 export const sendFile = (data) => {
   post("/file", data);
 };
 
-export const getCoverLetter = (path) => {
-  get(`/file/cover-letter/${path}`)
-}
+export const getFile = (id) => {
+  get(`/file/${id}`);
+};
