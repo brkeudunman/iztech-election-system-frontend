@@ -36,6 +36,7 @@ const SendMail = ({ user }) => {
     }
     message.loading("Announcement is sending please wait.");
   };
+  
   return !error ? (
     <Container>
       <Row style={{ width: "100%" }}>

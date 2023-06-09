@@ -66,6 +66,7 @@ const CoverLetterCell = ({ id }) => {
       },
     });
   }, []);
+  
   return (
     <>
       <br />
